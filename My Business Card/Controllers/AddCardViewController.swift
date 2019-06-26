@@ -27,26 +27,43 @@ class AddCardViewController: UIViewController {
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupKeyboardObserver()
+        // Setup tapRecognizer method
+        self.hideKeyboard()
     }
     
     // MARK: - IBActions
     @IBAction func cancelTapped(_ sender: Any) {
+        // Makes sure that keyboard is dismissed first
         view.endEditing(true)
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func saveTapped(_ sender: Any) {
-        let card = createCard()
-        let contact = createContact(card: card)
-        guard let qrCode = createQr(contact: contact) else {
-            Alert.invalidInput(vc: self)
-            return
+        
+        // Check that textfields are not empty
+        if titleTextField.text == "" && firstNameTextfield.text == "" {
+            Alert.incompleteInput(vc: self)
         }
-        card.qrCodeImage = qrCode.pngData()
-        delegate?.addQrCode(card: card)
-        view.endEditing(true)
-        self.dismiss(animated: true, completion: nil)
+        else if phoneNumberTextfield.text == "" && emailTextfield.text == "" {
+            Alert.incompleteInput(vc: self)
+        }
+        else {
+            // Create card
+            let card = createCard()
+            // Create a contact from the card
+            let contact = createContact(card: card)
+            // Check for nil
+            guard let qrCode = createQr(contact: contact) else {
+                Alert.invalidInput(vc: self)
+                return
+            }
+            // Set QRCode image
+            card.qrCodeImage = qrCode.pngData()
+            // Pass image back CardsVC
+            delegate?.addQrCode(card: card)
+            view.endEditing(true)
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     
@@ -65,7 +82,7 @@ class AddCardViewController: UIViewController {
         return card
     }
     
-    // Build contact
+    // Build contact using "" as default values
     func createContact(card: Card) -> CNMutableContact {
         
         let contact = CNMutableContact()
@@ -92,7 +109,6 @@ class AddCardViewController: UIViewController {
         // Convert contact into data
         let contactData = try? CNContactVCardSerialization.data(with: [contact])
         guard contactData != nil else {
-            Alert.invalidInput(vc: self)
             return nil
         }
         // Convert contact data into a string
@@ -131,87 +147,5 @@ class AddCardViewController: UIViewController {
         
         return processedImage
     }
-    
-    func setupKeyboardObserver() {
-
-        
-    }
 }
-// MARK: - Textfield delegate and helper methods
-extension AddCardViewController: UITextFieldDelegate {
-    
-    // Set character limits for textfields
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let textFieldText = textField.text,
-            let rangeOfTextToReplace = Range(range, in: textFieldText) else {
-                return false
-        }
-        if textField == titleTextField {
-            let substringToReplace = textFieldText[rangeOfTextToReplace]
-            let count = textFieldText.count - substringToReplace.count + string.count
-            return count <= 30
-        }
-        if textField == firstNameTextfield || textField == lastNameTextfield {
-            let substringToReplace = textFieldText[rangeOfTextToReplace]
-            let count = textFieldText.count - substringToReplace.count + string.count
-            return count <= 20
-        }
-        if textField == phoneNumberTextfield {
-            let substringToReplace = textFieldText[rangeOfTextToReplace]
-            let count = textFieldText.count - substringToReplace.count + string.count
-            return count <= 20
-        }
-        
-        return true
-    }
-    
-    // Turn phone number string into phone-number-format if possible
-    func format(phoneNumber sourcePhoneNumber: String) -> String {
-        // Remove any character that is not a number
-        let numbersOnly = sourcePhoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-        let length = numbersOnly.count
-        let hasLeadingOne = numbersOnly.hasPrefix("1")
-        
-        // Check for supported phone number length
-        guard length == 7 || length == 10 || (length == 11 && hasLeadingOne) else {
-            return sourcePhoneNumber
-        }
-        
-        let hasAreaCode = (length >= 10)
-        var sourceIndex = 0
-        
-        // Leading 1
-        var leadingOne = ""
-        if hasLeadingOne {
-            leadingOne = "1 "
-            sourceIndex += 1
-        }
-        
-        // Area code
-        var areaCode = ""
-        if hasAreaCode {
-            let areaCodeLength = 3
-            guard let areaCodeSubstring = numbersOnly.substring(start: sourceIndex, offsetBy: areaCodeLength) else {
-                return sourcePhoneNumber
-            }
-            areaCode = String(format: "(%@) ", areaCodeSubstring)
-            sourceIndex += areaCodeLength
-        }
-        
-        // Prefix, 3 characters
-        let prefixLength = 3
-        guard let prefix = numbersOnly.substring(start: sourceIndex, offsetBy: prefixLength) else {
-            return sourcePhoneNumber
-        }
-        sourceIndex += prefixLength
-        
-        // Suffix, 4 characters
-        let suffixLength = 4
-        guard let suffix = numbersOnly.substring(start: sourceIndex, offsetBy: suffixLength) else {
-            return sourcePhoneNumber
-        }
-        
-        return leadingOne + areaCode + prefix + "-" + suffix
-    }
 
-}

@@ -8,25 +8,18 @@
 
 import UIKit
 
-protocol DeleteCellDelegate {
-    func deleteCell(cell: CardCollectionViewCell)
+protocol CellDelegate {
+    func showError(error: Bool)
 }
 
 class CardCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    var delegate: DeleteCellDelegate?
+    var delegate: CellDelegate?
     // Outlets
     @IBOutlet weak var qrImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var phoneLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var coloredView: UIView!
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var deleteButton: UIButton!
-    @IBOutlet weak var editButton: UIButton!
     
     // MARK: - Computed properties
     var card: Card? {
@@ -41,45 +34,35 @@ class CardCollectionViewCell: UICollectionViewCell {
         configureCellUI()
     }
     
-    // IB Actions
-    
-    @IBAction func deleteButtonPressed(_ sender: Any) {
-            delegate?.deleteCell(cell: self)
-    }
-    
-    
     // Helper Methods
-    func setColors() {
-            let color = UIColor.FlatColor.Blue.BlueWhale
-            coloredView.backgroundColor = color
-            titleLabel.textColor = color
-            nameLabel.textColor = color
-            phoneLabel.textColor = color
-            emailLabel.textColor = color
-            deleteButton.tintColor = color
-            editButton.tintColor = color
-    }
     func configureCellUI() {
-        
+        // Content view border and rounded corners
         contentView.layer.cornerRadius = 15.0
         contentView.layer.borderWidth = 1.0
         contentView.layer.borderColor = UIColor.clear.cgColor
         contentView.layer.masksToBounds = true
-        setColors()
+        
+        // Colored view rounded corners
+        coloredView.layer.cornerRadius = 10.0
+        coloredView.layer.masksToBounds = true
     }
+    // Set card to display
     func setCard(card: Card?) {
+        // Check that card is not nil
         guard let card = card else {
+            // Show error
+            delegate?.showError(error: true)
             return
         }
-        guard let image = UIImage(data: card.qrCodeImage as! Data) else {
-            #warning("Handle error")
+        // Check that the qrcode exists for the card
+        guard let imageData = card.qrCodeImage else {
+            // Show error
+            delegate?.showError(error: true)
             return
         }
+        // Set the QRCode image for the cell
+        let image = UIImage(data: imageData)
         qrImageView.image = image
-        titleLabel.text = card.jobTitle
-        nameLabel.text = "\(card.firstName!) \(card.lastName!)"
-        phoneLabel.text = card.phoneNumber
-        emailLabel.text = card.email
     }
     
 }
