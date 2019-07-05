@@ -39,4 +39,8 @@ struct Alert {
         showAlert(on: vc, with: "Incomplete input", message: "Please add title or name, and a phone number or email.")
     }
     
+    static func imageError(vc: UIViewController) {
+        showAlert(on: vc, with: "There was an error with the image.", message: "Please try again.")
+    }
+    
 }

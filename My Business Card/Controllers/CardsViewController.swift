@@ -34,7 +34,10 @@ class CardsViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var currentCardNumberLabel: UILabel!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var amountOfCardsLabel: UILabel!
+    @IBOutlet weak var coverView: UIView!
+    @IBOutlet weak var noCardsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +89,7 @@ class CardsViewController: UIViewController {
         if cards.count == 0 {
             currentIndex = 0
             currentCardNumberLabel.isHidden = true
-            setButtons(enabled: false)
+            setButtonsAndLabel(enabled: false)
             titleLabel.text = nil
             nameLabel.text = nil
             numberLabel.text = nil
@@ -95,20 +98,24 @@ class CardsViewController: UIViewController {
         } else
         {
             // Set current card and text labels
-            setButtons(enabled: true)
+            setButtonsAndLabel(enabled: true)
             currentCardNumberLabel.isHidden = false
             let currentCard = cards[currentIndex]
             titleLabel.text = currentCard.jobTitle
-            nameLabel.text = " \((currentCard.firstName ?? "")) \((currentCard.lastName ?? ""))"
+            nameLabel.text = "\((currentCard.firstName ?? "")) \((currentCard.lastName ?? ""))"
             numberLabel.text = currentCard.phoneNumber
             emailLabel.text = currentCard.email
         }
         
     }
     
-    // Set button active status
-    func setButtons(enabled: Bool) {
+    // Set button and "No Cards" label active status
+    func setButtonsAndLabel(enabled: Bool) {
         deleteButton.isEnabled = enabled
+        shareButton.isEnabled = enabled
+        coverView.isHidden = enabled
+        noCardsLabel.isHidden = enabled
+        
     }
     // Configure Bottom View
     func setupBottomView() {
@@ -179,6 +186,33 @@ class CardsViewController: UIViewController {
             addButton.isEnabled = true
         }
     }
+    
+    @IBAction func shareButtonPressed(_ sender: Any) {
+        
+        guard let qrCodeImage = cards[currentIndex].qrCodeImage else {
+            Alert.imageError(vc: self)
+            return
+        }
+        // image to share
+        let image = UIImage(data: qrCodeImage)
+        
+        // Check that image is not nil
+        guard let checkedImage = image else {
+            Alert.imageError(vc: self)
+            return
+        }
+        // set up activity view controller
+        let imageToShare = [checkedImage]
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [UIActivity.ActivityType.postToFacebook]
+        
+        // present the activity view controller
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
     
     // Create action sheet to confirm deletion
     func askToDelete() {

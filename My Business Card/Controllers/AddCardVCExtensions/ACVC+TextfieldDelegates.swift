@@ -41,6 +41,30 @@ extension AddCardViewController: UITextFieldDelegate {
         return true
     }
     
+    // Move View up when textfield is editing
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        let height = (view.frame.height - textField.frame.origin.y) - 80
+        
+        
+        if height <= keyboardSize && viewMoved == false {
+        UIView.animate(withDuration: 0.3, animations: {
+            
+            self.topViewConstraint.constant = self.keyboardSize
+            self.view.layoutIfNeeded()
+            self.viewMoved = true
+            
+        })
+            
+    }
+    }
+    
+    // Move View down when keyboard is done editing
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        
+    }
+    
     // User tapped on "Next" or "Done" on keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let nextTag = textField.tag + 1
