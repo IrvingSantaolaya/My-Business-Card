@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		021648A422B84408009AF692 /* ViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021648A322B84408009AF692 /* ViewController+Extensions.swift */; };
 		021648A822C41C64009AF692 /* CVC+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021648A722C41C64009AF692 /* CVC+ScrollView.swift */; };
 		021648AA22C41D13009AF692 /* CVC+CustomDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021648A922C41D13009AF692 /* CVC+CustomDelegates.swift */; };
 		021648AC22C41D9E009AF692 /* CVC+CollectionviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021648AB22C41D9E009AF692 /* CVC+CollectionviewDelegate.swift */; };
@@ -26,7 +25,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		021648A322B84408009AF692 /* ViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extensions.swift"; sourceTree = "<group>"; };
 		021648A722C41C64009AF692 /* CVC+ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVC+ScrollView.swift"; sourceTree = "<group>"; };
 		021648A922C41D13009AF692 /* CVC+CustomDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVC+CustomDelegates.swift"; sourceTree = "<group>"; };
 		021648AB22C41D9E009AF692 /* CVC+CollectionviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVC+CollectionviewDelegate.swift"; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 		02F0B61722AA15AA00ED64C3 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				021648A322B84408009AF692 /* ViewController+Extensions.swift */,
 				02E54B1022B16EC8000751CC /* String+Extension.swift */,
 			);
 			path = Helpers;
@@ -226,7 +223,6 @@
 			files = (
 				02F0B5FD22A87F6000ED64C3 /* CardsViewController.swift in Sources */,
 				02E54B2822B35C94000751CC /* My_Business_Card.xcdatamodeld in Sources */,
-				021648A422B84408009AF692 /* ViewController+Extensions.swift in Sources */,
 				02E54B1422B33074000751CC /* PersistenceService.swift in Sources */,
 				02F0B60D22A8DD0200ED64C3 /* CardCollectionViewCell.swift in Sources */,
 				021648AF22C42214009AF692 /* ACVC+TextfieldDelegates.swift in Sources */,

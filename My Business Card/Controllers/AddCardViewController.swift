@@ -175,7 +175,7 @@ class AddCardViewController: UIViewController {
         contact.phoneNumbers = [CNLabeledValue(
             label:CNLabelPhoneNumberiPhone,
             value:CNPhoneNumber(stringValue: card.phoneNumber ?? ""))]
-        print(contact.phoneNumbers)
+
         return contact
     }
     
