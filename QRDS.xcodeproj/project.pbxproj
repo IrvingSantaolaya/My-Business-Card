@@ -33,7 +33,7 @@
 		02E54B1322B33074000751CC /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		02E54B2722B35C94000751CC /* My_Business_Card.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = My_Business_Card.xcdatamodel; sourceTree = "<group>"; };
 		02E54B2922B41F55000751CC /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
-		02F0B5F722A87F6000ED64C3 /* My Business Card.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Business Card.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		02F0B5F722A87F6000ED64C3 /* QRDS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRDS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F0B5FA22A87F6000ED64C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02F0B5FC22A87F6000ED64C3 /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		02F0B5FF22A87F6000ED64C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 		02F0B5F822A87F6000ED64C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				02F0B5F722A87F6000ED64C3 /* My Business Card.app */,
+				02F0B5F722A87F6000ED64C3 /* QRDS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,9 +153,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		02F0B5F622A87F6000ED64C3 /* My Business Card */ = {
+		02F0B5F622A87F6000ED64C3 /* QRDS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 02F0B60922A87F6100ED64C3 /* Build configuration list for PBXNativeTarget "My Business Card" */;
+			buildConfigurationList = 02F0B60922A87F6100ED64C3 /* Build configuration list for PBXNativeTarget "QRDS" */;
 			buildPhases = (
 				02F0B5F322A87F6000ED64C3 /* Sources */,
 				02F0B5F422A87F6000ED64C3 /* Frameworks */,
@@ -165,9 +165,9 @@
 			);
 			dependencies = (
 			);
-			name = "My Business Card";
+			name = QRDS;
 			productName = "My Business Card";
-			productReference = 02F0B5F722A87F6000ED64C3 /* My Business Card.app */;
+			productReference = 02F0B5F722A87F6000ED64C3 /* QRDS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -185,7 +185,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 02F0B5F222A87F6000ED64C3 /* Build configuration list for PBXProject "My Business Card" */;
+			buildConfigurationList = 02F0B5F222A87F6000ED64C3 /* Build configuration list for PBXProject "QRDS" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -198,7 +198,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				02F0B5F622A87F6000ED64C3 /* My Business Card */,
+				02F0B5F622A87F6000ED64C3 /* QRDS */,
 			);
 		};
 /* End PBXProject section */
@@ -381,11 +381,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F53KQCQHRC;
 				INFOPLIST_FILE = "My Business Card/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.IrvingCodes.My-Business-Card";
+				PRODUCT_BUNDLE_IDENTIFIER = com.IrvingCodes.QRDS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -399,11 +400,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F53KQCQHRC;
 				INFOPLIST_FILE = "My Business Card/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.IrvingCodes.My-Business-Card";
+				PRODUCT_BUNDLE_IDENTIFIER = com.IrvingCodes.QRDS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -413,7 +415,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		02F0B5F222A87F6000ED64C3 /* Build configuration list for PBXProject "My Business Card" */ = {
+		02F0B5F222A87F6000ED64C3 /* Build configuration list for PBXProject "QRDS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				02F0B60722A87F6100ED64C3 /* Debug */,
@@ -422,7 +424,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		02F0B60922A87F6100ED64C3 /* Build configuration list for PBXNativeTarget "My Business Card" */ = {
+		02F0B60922A87F6100ED64C3 /* Build configuration list for PBXNativeTarget "QRDS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				02F0B60A22A87F6100ED64C3 /* Debug */,
