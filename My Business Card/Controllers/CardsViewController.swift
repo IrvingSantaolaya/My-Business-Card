@@ -17,41 +17,130 @@ class CardsViewController: UIViewController {
     var cards = [Card]()
     
     // Hold value for cell scaling
-    let cellScaling: CGFloat = 0.7
+    let cellScaling: CGFloat = 0.75
+    
+    // Hold value for current index
+    var currentIndex = 0
+    let maxNumberOfCards = 20
     
     // MARK: - IBOutlets
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var numberLabel: UILabel!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var currentCardNumberLabel: UILabel!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var amountOfCardsLabel: UILabel!
+    @IBOutlet weak var coverView: UIView!
+    @IBOutlet weak var noCardsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupCollectionView()
         fetchSavedData()
+        setupBottomView()
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        setLabels()
     }
     
-    // MARK: - Helper Methods
+    // MARK: - Helper Method
     func setupCollectionView() {
         
-        view.setGradientBackground(colorOne: UIColor.FlatColor.Blue.LightBlue, colorTwo: UIColor.FlatColor.Blue.LighterBlue)
-        // Get screen width and height and use it to calculate cell size
+        collectionView.delegate = self
+        collectionView.dataSource = self
         let screenSize = UIScreen.main.bounds.size
-        let cellWidth = floor(screenSize.width * cellScaling)
-        let cellHeight = floor(screenSize.height * cellScaling)
+        let cellSize = floor(screenSize.width * cellScaling)
         
-        // Get insets and set layout
-        let xInset = (view.bounds.width - cellWidth) / 2.0
-        let yInset = (view.bounds.height - cellHeight) / 2.0
+        // Calculate insets and set layout
+        let inset = (view.bounds.width - cellSize) / 2.0
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
-        collectionView.contentInset = UIEdgeInsets(top: yInset, left: xInset, bottom: yInset, right: xInset)
+        layout.itemSize = CGSize(width: cellSize, height: cellSize)
+        collectionView.contentInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         
         // Set up collectionview cell shadow effect
         collectionView.layer.shadowColor = UIColor.black.cgColor
         collectionView.layer.shadowOffset = CGSize(width: 0, height: 1)
         collectionView.layer.shadowOpacity = 0.5
-        collectionView.layer.shadowRadius = 15.0
+        collectionView.layer.shadowRadius = 5.0
         collectionView.clipsToBounds = false
         collectionView.layer.masksToBounds = false
+    }
+    
+    // Set up labels
+    func setLabels() {
+        // Check if index is out of bounds
+        if currentIndex >= cards.count {
+            currentIndex -= 1
+        }
+        // Update the current index label
+        currentCardNumberLabel.text = String(currentIndex + 1)
+        // Update the amount of cards label
+        amountOfCardsLabel.text = "\(cards.count)/\(maxNumberOfCards)"
+        
+        // Reset card index and clear labels
+        if cards.count == 0 {
+            currentIndex = 0
+            currentCardNumberLabel.isHidden = true
+            setButtonsAndLabel(enabled: false)
+            titleLabel.text = nil
+            nameLabel.text = nil
+            numberLabel.text = nil
+            emailLabel.text = nil
+            return
+        } else
+        {
+            // Set current card and text labels
+            setButtonsAndLabel(enabled: true)
+            currentCardNumberLabel.isHidden = false
+            let currentCard = cards[currentIndex]
+            titleLabel.text = currentCard.jobTitle
+            nameLabel.text = "\((currentCard.firstName ?? "")) \((currentCard.lastName ?? ""))"
+            numberLabel.text = currentCard.phoneNumber
+            emailLabel.text = currentCard.email
+        }
+        
+    }
+    
+    // Set button and "No Cards" label active status
+    func setButtonsAndLabel(enabled: Bool) {
+        deleteButton.isEnabled = enabled
+        shareButton.isEnabled = enabled
+        coverView.isHidden = enabled
+        noCardsLabel.isHidden = enabled
+        
+    }
+    // Configure Bottom View
+    func setupBottomView() {
+        
+        // Delete Button round and shadow
+        deleteButton.layer.cornerRadius = 0.5 * deleteButton.bounds.size.width
+        deleteButton.clipsToBounds = true
+        deleteButton.layer.shadowColor = UIColor.black.cgColor
+        deleteButton.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+        deleteButton.layer.shadowRadius = 5
+        deleteButton.layer.shadowOpacity = 0.3
+        deleteButton.layer.masksToBounds = false
+        
+        // Add Button round and shadow
+        addButton.layer.cornerRadius = 0.5 * addButton.bounds.size.width
+        addButton.clipsToBounds = true
+        addButton.layer.shadowColor = UIColor.black.cgColor
+        addButton.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+        addButton.layer.shadowRadius = 5
+        addButton.layer.shadowOpacity = 0.3
+        addButton.layer.masksToBounds = false
+        
+        // Current Card Label round
+        currentCardNumberLabel.layer.cornerRadius = 0.5 * currentCardNumberLabel.bounds.size.width
+        currentCardNumberLabel.clipsToBounds = true
     }
     
     // Grab data that is saved by core data
@@ -66,10 +155,82 @@ class CardsViewController: UIViewController {
         }
         catch {
             // Show alert
-            Alert.unableToSave(vc: self)
+            Alert.unableToLoad(vc: self)
         }
         
     }
+    
+    // MARK: - IBActions
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        askToDelete()
+
+    }
+    
+    func deleteCard() {
+        // Delete card
+        // Remove card in array, coredata store, and collectionview
+        PersistenceService.context.delete(cards[currentIndex])
+        cards.remove(at: currentIndex)
+        
+        
+        let index = IndexPath(item: currentIndex, section:  0)
+        collectionView.deleteItems(at: [index])
+        collectionView.reloadData()
+        setLabels()
+        PersistenceService.saveContext()
+        
+        // Check that there are less than 20 cards
+        if cards.count < 20 {
+            
+            // Enable add button
+            addButton.isEnabled = true
+        }
+    }
+    
+    @IBAction func shareButtonPressed(_ sender: Any) {
+        
+        guard let qrCodeImage = cards[currentIndex].qrCodeImage else {
+            Alert.imageError(vc: self)
+            return
+        }
+        // image to share
+        let image = UIImage(data: qrCodeImage)
+        
+        // Check that image is not nil
+        guard let checkedImage = image else {
+            Alert.imageError(vc: self)
+            return
+        }
+        // set up activity view controller
+        let imageToShare = [checkedImage]
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [UIActivity.ActivityType.postToFacebook]
+        
+        // present the activity view controller
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    
+    // Create action sheet to confirm deletion
+    func askToDelete() {
+        
+        // Action Sheet title and message
+        let alert = UIAlertController(title: "Are you sure you want to delete the current QRD?", message: "This cannot be undone.", preferredStyle: .actionSheet)
+        
+        // "Yes" option
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action) in
+            self.deleteCard()
+        }))
+        // "Cancel" option
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        // Present action sheet
+        self.present(alert, animated: true)
+    }
+    
     
     // Storyboard prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -79,89 +240,4 @@ class CardsViewController: UIViewController {
         }
     }
     
-}
-
-// MARK: - AddQRCode delegate methods
-extension CardsViewController: AddQRCodeDelegate {
-    
-    func addQrCode(card: Card) {
-        // Add card to array and reload collectionview
-        cards.append(card)
-        PersistenceService.saveContext()
-        collectionView.reloadData()
-    }
-}
-
-// MARK: - CollectionView delegates and datasource methods
-extension CardsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    // Set the amount of cards
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cards.count
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // Create cell
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCollectionViewCell
-        
-        // Set cell properties
-        cell.delegate = self
-        cell.card = cards[indexPath.item]
-        
-        // Return cell
-        return cell
-        
-    }
-    
-}
-
-// MARK: - ScrollView Delegate methods
-extension CardsViewController: UIScrollViewDelegate {
-    
-    // Create "Stop in the middle" effect for CollectionView
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
-        // Get the layout for collectionView
-        let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        // Get width including spacing
-        let cellWidthSpacing = layout.itemSize.width + layout.minimumLineSpacing
-        var offset = targetContentOffset.pointee
-        // Get index by calculating amount of cells that have scrolled; rounded
-        let index = (offset.x + scrollView.contentInset.left) / cellWidthSpacing
-        let roundedIndex = round(index)
-        // Set the offset
-        offset = CGPoint(x: roundedIndex * cellWidthSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
-        // Stop at the offset
-        targetContentOffset.pointee = offset
-        
-    }
-}
-
-// Delete cards delegate method
-extension CardsViewController: DeleteCellDelegate {
-    
-    func deleteCell(cell: CardCollectionViewCell) {
-        // Grab reference to the index path
-        if let indexPath = collectionView.indexPath(for: cell) {
-            // Make sure that the card is not nil
-            if cell.card == nil {
-                // Present alert
-                Alert.unableToDelete(vc: self)
-                collectionView.reloadData()
-            }
-            else {
-                // Remove card in array, coredata store, and collectionview
-                cards.remove(at: indexPath.item)
-                PersistenceService.context.delete(cell.card!)
-                collectionView.deleteItems(at: [indexPath])
-                collectionView.reloadData()
-            }
-            
-        }
-        else {
-            Alert.unableToDelete(vc: self)
-            collectionView.reloadData()
-        }
-    }
 }
