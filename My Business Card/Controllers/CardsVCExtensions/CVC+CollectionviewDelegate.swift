@@ -13,9 +13,7 @@ extension CardsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     // Set the amount of cards
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return cards.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

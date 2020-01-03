@@ -45,6 +45,7 @@ class CardsViewController: UIViewController {
         setupCollectionView()
         fetchSavedData()
         setupBottomView()
+        shareButton.isEnabled = true
         
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -112,7 +113,6 @@ class CardsViewController: UIViewController {
     // Set button and "No Cards" label active status
     func setButtonsAndLabel(enabled: Bool) {
         deleteButton.isEnabled = enabled
-        shareButton.isEnabled = enabled
         coverView.isHidden = enabled
         noCardsLabel.isHidden = enabled
         
@@ -161,6 +161,16 @@ class CardsViewController: UIViewController {
     }
     
     // MARK: - IBActions
+    @IBAction func addCardPressed(_ sender: Any) {
+        
+        let newCardVC = CreateCardVC()
+        let navController = UINavigationController(rootViewController: newCardVC)
+        
+        self.present(navController, animated: true, completion: nil)
+        
+    }
+    
+    
     @IBAction func deleteButtonPressed(_ sender: Any) {
         askToDelete()
 
@@ -189,28 +199,32 @@ class CardsViewController: UIViewController {
     
     @IBAction func shareButtonPressed(_ sender: Any) {
         
-        guard let qrCodeImage = cards[currentIndex].qrCodeImage else {
-            Alert.imageError(vc: self)
-            return
-        }
-        // image to share
-        let image = UIImage(data: qrCodeImage)
+        let cardVC = CardsVC()
+        cardVC.modalPresentationStyle = .fullScreen
+        navigationController?.present(cardVC, animated: true, completion: nil)
         
-        // Check that image is not nil
-        guard let checkedImage = image else {
-            Alert.imageError(vc: self)
-            return
-        }
-        // set up activity view controller
-        let imageToShare = [checkedImage]
-        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
-        
-        // exclude some activity types from the list (optional)
-        activityViewController.excludedActivityTypes = [UIActivity.ActivityType.postToFacebook]
-        
-        // present the activity view controller
-        self.present(activityViewController, animated: true, completion: nil)
+//        guard let qrCodeImage = cards[currentIndex].qrCodeImage else {
+//            Alert.imageError(vc: self)
+//            return
+//        }
+//        // image to share
+//        let image = UIImage(data: qrCodeImage)
+//
+//        // Check that image is not nil
+//        guard let checkedImage = image else {
+//            Alert.imageError(vc: self)
+//            return
+//        }
+//        // set up activity view controller
+//        let imageToShare = [checkedImage]
+//        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+//        activityViewController.popoverPresentationController?.sourceView = self.view
+//
+//        // exclude some activity types from the list (optional)
+//        activityViewController.excludedActivityTypes = [UIActivity.ActivityType.postToFacebook]
+//
+//        // present the activity view controller
+//        self.present(activityViewController, animated: true, completion: nil)
     }
     
     
@@ -229,15 +243,6 @@ class CardsViewController: UIViewController {
         
         // Present action sheet
         self.present(alert, animated: true)
-    }
-    
-    
-    // Storyboard prepare for segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toAddCardVC" {
-            let destinationVC = segue.destination as! AddCardViewController
-            destinationVC.delegate = self
-        }
     }
     
 }
