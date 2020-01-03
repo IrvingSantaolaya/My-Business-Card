@@ -16,6 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        self.window = self.window ?? UIWindow()
+        
+        let cardVC = CardsVC()
+        if #available(iOS 13.0, *) {
+            cardVC.view.backgroundColor = UIColor.systemBackground
+        } else {
+            cardVC.view.backgroundColor = .white
+        }
+        let navVC = UINavigationController(rootViewController: cardVC)
+        navVC.navigationBar.prefersLargeTitles = true
+        
+        self.window?.rootViewController = navVC
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 

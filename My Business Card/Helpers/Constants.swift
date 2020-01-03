@@ -11,6 +11,7 @@ import Foundation
 class Constants {
     
     // MARK: NavBar titles
+    static let cards = "Cards"
     static let createCard = "Create card"
     static let enterContactInfo = "Enter contact info"
     static let enterSocialInfo = "Enter social info"

@@ -200,8 +200,9 @@ class CardsViewController: UIViewController {
     @IBAction func shareButtonPressed(_ sender: Any) {
         
         let cardVC = CardsVC()
-        cardVC.modalPresentationStyle = .fullScreen
-        navigationController?.present(cardVC, animated: true, completion: nil)
+        let navVC = UINavigationController(rootViewController: cardVC)
+        navVC.modalPresentationStyle = .fullScreen
+        navigationController?.present(navVC, animated: true, completion: nil)
         
 //        guard let qrCodeImage = cards[currentIndex].qrCodeImage else {
 //            Alert.imageError(vc: self)

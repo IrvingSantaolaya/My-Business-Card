@@ -19,9 +19,9 @@ class CreateCardVC: UIViewController {
     private let padding: CGFloat = 20
     // Computed properties
     private let nextButton: PrimaryButton = {
-        var color: UIColor = .green
+        var color: UIColor = UIColor.purple
         if #available(iOS 13.0, *) {
-            color = UIColor.systemGreen
+            color = UIColor.systemIndigo
         }
         return PrimaryButton(color: color, title: Constants.next)
     }()
