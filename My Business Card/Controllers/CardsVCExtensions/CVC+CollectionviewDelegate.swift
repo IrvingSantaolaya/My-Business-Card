@@ -8,7 +8,7 @@
 
 import UIKit
 
-// MARK: - CollectionView delegates and datasource methods
+/* MARK: - CollectionView delegates and datasource methods
 extension CardsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     // Set the amount of cards
@@ -32,3 +32,4 @@ extension CardsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     
 }
+ */

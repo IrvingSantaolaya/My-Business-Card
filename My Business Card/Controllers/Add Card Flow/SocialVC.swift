@@ -11,6 +11,7 @@ import UIKit
 class SocialVC: UIViewController {
     
     // MARK: Properties
+    var card: Card?
     private let logoImageView = UIImageView()
     private let secondaryLabel = SecondaryLabel(text: Constants.socialInfo)
     private let circleView = CircleContainerView(size: 120)
@@ -22,6 +23,9 @@ class SocialVC: UIViewController {
     private let emailImageView = UIImageView()
     private let padding: CGFloat = 20
     private let fieldHeight: CGFloat = 32
+    private let qrBuilder = QRCodeBuilder()
+    
+    var delegate: CardReceiverDelegate?
     
     // Computed properties
     private let nextButton: PrimaryButton = {
@@ -87,8 +91,19 @@ class SocialVC: UIViewController {
     }
     
     //MARK: Actions
-    @objc func nextTapped() {
-        
+    @objc func finishTapped() {
+        if card != nil {
+            card!.twitter = twitterField.text
+            card!.linkedin = linkedinField.text
+            card!.email = emailField.text
+            let contact = qrBuilder.createContact(card: card!)
+            guard let qrCode = qrBuilder.createQr(contact: contact) else { return }
+            card!.qrCodeImage = qrCode.pngData()
+            
+            delegate?.gotCard(card: self.card!)
+        }
+        view.endEditing(true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: UI Methods
@@ -184,6 +199,9 @@ class SocialVC: UIViewController {
             nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
         ])
-        nextButton.addTarget(self, action: #selector(nextTapped), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(finishTapped), for: .touchUpInside)
     }
+    
+    // MARK: Helpers
+    
 }

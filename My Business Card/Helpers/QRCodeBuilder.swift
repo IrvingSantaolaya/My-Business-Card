@@ -20,9 +20,22 @@ class QRCodeBuilder {
         contact.givenName = card.firstName ?? ""
         contact.familyName = card.lastName ?? ""
         contact.jobTitle = card.jobTitle ?? ""
+        contact.organizationName = card.company ?? ""
         
         // Set contact email
         contact.emailAddresses = [CNLabeledValue(label: CNLabelHome, value: card.email as NSString? ?? "")]
+        
+        // Set social
+        contact.socialProfiles = [CNLabeledValue<CNSocialProfile>]()
+        
+        if card.twitter != nil && card.twitter != "" {
+            let twitterProfile = CNLabeledValue(label: "Twitter", value: CNSocialProfile(urlString: nil, username: card.twitter, userIdentifier: nil, service: CNSocialProfileServiceTwitter))
+            contact.socialProfiles.append(twitterProfile)
+        }
+        if card.linkedin != nil && card.linkedin != "" {
+            let linkedinProfile = CNLabeledValue(label: "LinkedIn", value: CNSocialProfile(urlString: nil, username: card.linkedin, userIdentifier: nil, service: CNSocialProfileServiceLinkedIn))
+            contact.socialProfiles.append(linkedinProfile)
+        }
         
         // Set contact phone number with phone format
         contact.phoneNumbers = [CNLabeledValue(

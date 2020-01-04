@@ -44,4 +44,6 @@ class Constants {
     static let createCardInfo = "Start by naming your card. This will appear at the top of your card."
     static let enterInfo = "Now, enter basic contact info that you want to share."
     static let socialInfo = "If you'd like, you can enter some social media info too."
+    
+    static let defaultCardTitle = "Card Title"
 }

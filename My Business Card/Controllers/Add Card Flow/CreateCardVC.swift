@@ -9,14 +9,17 @@
 import UIKit
 
 class CreateCardVC: UIViewController {
-
+    
     // MARK: Properties
+    var card = Card(context: PersistenceService.context)
     private let logoImageView = UIImageView()
     private let primaryLabel = PrimaryLabel(text: Constants.createCard)
     private let secondaryLabel = SecondaryLabel(text: Constants.createCardInfo)
     private let circleView = CircleContainerView(size: 120)
     private let textfield = PrimaryTextField(placeholder: Constants.cardNameField)
     private let padding: CGFloat = 20
+    
+    var delegate: CardReceiverDelegate?
     // Computed properties
     private let nextButton: PrimaryButton = {
         var color: UIColor = UIColor.purple
@@ -44,6 +47,9 @@ class CreateCardVC: UIViewController {
     //MARK: Actions
     @objc func nextTapped() {
         let infoVC = AddInfoVC()
+        card.cardName = textfield.text
+        infoVC.card = card
+        infoVC.delegate = self
         navigationController?.pushViewController(infoVC, animated: true)
     }
     
@@ -109,5 +115,11 @@ class CreateCardVC: UIViewController {
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             nextButton.heightAnchor.constraint(equalToConstant: 35)
         ])
+    }
+}
+
+extension CreateCardVC: CardReceiverDelegate {
+    func gotCard(card: Card) {
+        delegate?.gotCard(card: card)
     }
 }

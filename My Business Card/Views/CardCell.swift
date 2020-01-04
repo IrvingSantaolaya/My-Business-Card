@@ -10,10 +10,29 @@ import UIKit
 
 class CardCell: UICollectionViewCell {
     
+    private var titleLabel = PrimaryLabel(text: Constants.defaultCardTitle)
+    private let squareView = SquareContainerView(radius: 20)
+    
+    var card: Card? {
+        didSet {
+            setCard(card: card)
+        }
+    }
+    
+    var qrImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 5
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureCellUI()
+        setupImage()
     }
     
     required init?(coder: NSCoder) {
@@ -22,21 +41,55 @@ class CardCell: UICollectionViewCell {
     
     func configureCellUI() {
         // Content view border and rounded corners
-        contentView.layer.cornerRadius = 15.0
-        contentView.layer.borderWidth = 1.0
-        contentView.layer.shadowRadius = 5
-        contentView.layer.shadowColor = UIColor.black.cgColor
         
         if #available(iOS 13.0, *) {
-            contentView.backgroundColor = UIColor.systemIndigo
+            contentView.backgroundColor = UIColor.systemGray6
             contentView.layer.borderColor = UIColor.systemGray.cgColor
         } else {
             contentView.backgroundColor = .lightGray
             contentView.layer.borderColor = UIColor.darkGray.cgColor
         }
-        contentView.layer.masksToBounds = true
+    }
+    
+    private func setupImage() {
+        if #available(iOS 13.0, *) {
+            squareView.backgroundColor = UIColor.systemIndigo
+        } else {
+            squareView.backgroundColor = UIColor.purple
+        }
+        contentView.addSubview(squareView)
         
-        // Colored view rounded corners
-        backgroundColor = .clear
+        NSLayoutConstraint.activate([
+            squareView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            squareView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            squareView.widthAnchor.constraint(equalToConstant: 220),
+            squareView.heightAnchor.constraint(equalToConstant: 220)
+        ])
+        
+        squareView.addSubview(qrImageView)
+        
+        NSLayoutConstraint.activate([
+            qrImageView.centerXAnchor.constraint(equalTo: squareView.centerXAnchor),
+            qrImageView.centerYAnchor.constraint(equalTo: squareView.centerYAnchor),
+            qrImageView.widthAnchor.constraint(equalToConstant: 200),
+            qrImageView.heightAnchor.constraint(equalToConstant: 200)
+        ])
+    }
+    
+    func setCard(card: Card?) {
+        // Check that card is not nil
+        guard let card = card else {
+            // Show error
+            return
+        }
+        // Check that the qrcode exists for the card
+        guard let imageData = card.qrCodeImage else {
+            // Show error
+            return
+        }
+        // Set the QRCode image for the cell
+        let image = UIImage(data: imageData)
+        qrImageView.image = image
+        titleLabel.text = card.cardName
     }
 }

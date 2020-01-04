@@ -18,9 +18,9 @@ class SquareContainerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(size: CGFloat) {
+    init(radius: CGFloat) {
         super.init(frame: .zero)
-        layer.cornerRadius = 20
+        layer.cornerRadius = radius
         setup()
     }
     

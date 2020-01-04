@@ -11,6 +11,7 @@ import UIKit
 class AddInfoVC: UIViewController {
 
     // MARK: Properties
+    var card: Card?
     private let logoImageView = UIImageView()
     private let primaryLabel = PrimaryLabel(text: Constants.createCard)
     private let secondaryLabel = SecondaryLabel(text: Constants.enterInfo)
@@ -22,6 +23,8 @@ class AddInfoVC: UIViewController {
     private let phoneField = PrimaryTextField(placeholder: Constants.phoneNumberField)
     private let padding: CGFloat = 20
     private let fieldHeight: CGFloat = 32
+    
+    var delegate: CardReceiverDelegate?
     
     // Computed properties
     private let nextButton: PrimaryButton = {
@@ -58,7 +61,16 @@ class AddInfoVC: UIViewController {
     
     //MARK: Actions
     @objc func nextTapped() {
+        card?.firstName = firstNameField.text
+        card?.lastName = lastNameField.text
+        card?.phoneNumber = phoneField.text
+        card?.company = companyNameField.text
+        card?.jobTitle = jobTitleField.text
+        
         let socialVC = SocialVC()
+        socialVC.card = card
+        socialVC.delegate = self
+        
         navigationController?.pushViewController(socialVC, animated: true)
     }
     
@@ -135,5 +147,12 @@ class AddInfoVC: UIViewController {
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
         ])
         nextButton.addTarget(self, action: #selector(nextTapped), for: .touchUpInside)
+    }
+}
+
+extension AddInfoVC: CardReceiverDelegate {
+    
+    func gotCard(card: Card) {
+        delegate?.gotCard(card: card)
     }
 }

@@ -27,7 +27,7 @@ class PrimaryLabel: UILabel {
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
         font = UIFont.preferredFont(forTextStyle: .title1)
-        textAlignment = .center
+        textAlignment = .left
         numberOfLines = 0
         if #available(iOS 13.0, *) {
             textColor = .label

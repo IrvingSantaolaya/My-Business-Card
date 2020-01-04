@@ -14,7 +14,7 @@ extension CardsVC: UIScrollViewDelegate {
     // Create "Stop in the middle" effect for CollectionView
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        scrollView.decelerationRate = UIScrollView.DecelerationRate(rawValue: 0.5)
+        scrollView.decelerationRate = UIScrollView.DecelerationRate(rawValue: 0.65)
         // Get the layout for collectionView
         let layout = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
         // Get width including spacing
@@ -29,6 +29,9 @@ extension CardsVC: UIScrollViewDelegate {
         offset = CGPoint(x: roundedIndex * cellWidthSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
         // Stop at the offset
         targetContentOffset.pointee = offset
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         impactFeedbackgenerator.impactOccurred()
     }
     

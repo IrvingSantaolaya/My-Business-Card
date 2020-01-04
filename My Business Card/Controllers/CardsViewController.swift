@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-
+/*
 class CardsViewController: UIViewController {
     
     // MARK: - Properties
@@ -186,8 +186,7 @@ class CardsViewController: UIViewController {
         let index = IndexPath(item: currentIndex, section:  0)
         collectionView.deleteItems(at: [index])
         collectionView.reloadData()
-        setLabels()
-        PersistenceService.saveContext()
+    }
         
         // Check that there are less than 20 cards
         if cards.count < 20 {
@@ -247,3 +246,4 @@ class CardsViewController: UIViewController {
     }
     
 }
+ */
