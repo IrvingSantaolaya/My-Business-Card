@@ -39,8 +39,8 @@ class CardsVC: UIViewController, CardReceiverDelegate {
         let width = view.frame.size.width
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: -55, right: 10)
-        layout.itemSize = CGSize(width: width * 0.9, height: height * 0.8)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.itemSize = CGSize(width: width * 0.9, height: height * 0.75)
         layout.scrollDirection = .horizontal
         let frame = CGRect(x: 0, y: (height - height * 0.8), width: width, height: height * 0.8)
         collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
@@ -52,7 +52,7 @@ class CardsVC: UIViewController, CardReceiverDelegate {
         
         
         if #available(iOS 13.0, *) {
-            collectionView.backgroundColor = UIColor.systemBackground
+            collectionView.backgroundColor = UIColor(named: Constants.backgroundColor)
         } else {
             collectionView.backgroundColor = .white
         }
@@ -122,15 +122,13 @@ extension CardsVC: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.card = cards[indexPath.item]
         
         cell.contentView.layer.cornerRadius = 20
-        cell.contentView.layer.borderWidth = 0
+        cell.contentView.layer.borderWidth = 1
+        if #available(iOS 13.0, *) {
+            cell.contentView.layer.borderColor = UIColor.quaternarySystemFill.cgColor
+        } else {
+            // Fallback on earlier versions
+        }
         cell.contentView.layer.masksToBounds = true
-
-        cell.layer.shadowColor = cell.backgroundColor?.cgColor
-        cell.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-        cell.layer.shadowRadius = 8.0
-        cell.layer.shadowOpacity = 0.3
-        cell.layer.masksToBounds = false
-        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
 
         return cell
         

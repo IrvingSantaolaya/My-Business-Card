@@ -20,8 +20,6 @@ class CircleContainerView: UIView {
     
     init(size: CGFloat) {
         super.init(frame: .zero)
-        frame.size.width = size
-        frame.size.height = size
         layer.cornerRadius = size / 2
         setup()
     }

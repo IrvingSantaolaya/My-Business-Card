@@ -10,29 +10,24 @@ import UIKit
 
 class CardCell: UICollectionViewCell {
     
-    private var titleLabel = PrimaryLabel(text: Constants.defaultCardTitle)
-    private let squareView = SquareContainerView(radius: 20)
+    private var topContainerView = TopCellContainer()
+    private let bottomContainerView = BottomCellContainer()
+    private var height: CGFloat?
+    private var width: CGFloat?
     
     var card: Card? {
         didSet {
             setCard(card: card)
         }
     }
-    
-    var qrImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = 5
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
+
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        height = contentView.frame.height
+        width = contentView.frame.width
         configureCellUI()
-        setupImage()
+        setupContainers()
     }
     
     required init?(coder: NSCoder) {
@@ -41,39 +36,28 @@ class CardCell: UICollectionViewCell {
     
     func configureCellUI() {
         // Content view border and rounded corners
-        
-        if #available(iOS 13.0, *) {
-            contentView.backgroundColor = UIColor.systemGray6
-            contentView.layer.borderColor = UIColor.systemGray.cgColor
-        } else {
-            contentView.backgroundColor = .lightGray
-            contentView.layer.borderColor = UIColor.darkGray.cgColor
-        }
+        contentView.backgroundColor = UIColor(named: Constants.cardColor)
+  
     }
     
-    private func setupImage() {
-        if #available(iOS 13.0, *) {
-            squareView.backgroundColor = UIColor.systemIndigo
-        } else {
-            squareView.backgroundColor = UIColor.purple
-        }
-        contentView.addSubview(squareView)
+    private func setupContainers() {
         
+        guard let height = height, let width = width else { return }
+        
+        addSubview(topContainerView)
+        addSubview(bottomContainerView)
         NSLayoutConstraint.activate([
-            squareView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            squareView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            squareView.widthAnchor.constraint(equalToConstant: 220),
-            squareView.heightAnchor.constraint(equalToConstant: 220)
+            topContainerView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            topContainerView.topAnchor.constraint(equalTo: topAnchor),
+            topContainerView.widthAnchor.constraint(equalToConstant: width),
+            topContainerView.heightAnchor.constraint(equalToConstant: height / 2),
+            
+            bottomContainerView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            bottomContainerView.topAnchor.constraint(equalTo: topContainerView.bottomAnchor),
+            bottomContainerView.widthAnchor.constraint(equalToConstant: width),
+            bottomContainerView.heightAnchor.constraint(equalToConstant: height / 2)
         ])
-        
-        squareView.addSubview(qrImageView)
-        
-        NSLayoutConstraint.activate([
-            qrImageView.centerXAnchor.constraint(equalTo: squareView.centerXAnchor),
-            qrImageView.centerYAnchor.constraint(equalTo: squareView.centerYAnchor),
-            qrImageView.widthAnchor.constraint(equalToConstant: 200),
-            qrImageView.heightAnchor.constraint(equalToConstant: 200)
-        ])
+
     }
     
     func setCard(card: Card?) {
@@ -89,7 +73,20 @@ class CardCell: UICollectionViewCell {
         }
         // Set the QRCode image for the cell
         let image = UIImage(data: imageData)
-        qrImageView.image = image
-        titleLabel.text = card.cardName
+        topContainerView.qrImageView.image = image
+        topContainerView.titleLabel.text = card.cardName
+        
+        // Using "!" because it will produce an empty string
+        bottomContainerView.nameLabel.text = "\(card.firstName!) \(card.lastName!)"
+        bottomContainerView.phoneLabel.text = "\(card.phoneNumber!)"
+        
+        if card.jobTitle != "" && card.company != ""{
+            bottomContainerView.workLabel.text = "\(card.jobTitle!) @ \(card.company!)"
+        }
+        
+        else {
+            bottomContainerView.workLabel.text = card.jobTitle != nil ? card.jobTitle! : card.company!
+        }
+        
     }
 }

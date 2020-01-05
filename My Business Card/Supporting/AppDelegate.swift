@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let cardVC = CardsVC()
         if #available(iOS 13.0, *) {
-            cardVC.view.backgroundColor = UIColor.systemBackground
+            cardVC.view.backgroundColor = UIColor(named: Constants.backgroundColor)
         } else {
             cardVC.view.backgroundColor = .white
         }

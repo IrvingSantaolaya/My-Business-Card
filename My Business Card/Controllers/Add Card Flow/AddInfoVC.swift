@@ -76,7 +76,7 @@ class AddInfoVC: UIViewController {
     
     // MARK: UI Methods
     private func setupView() {
-        title = Constants.enterInfo
+        title = Constants.enterContactInfo
         navigationController?.navigationBar.prefersLargeTitles = true
         if #available(iOS 13.0, *) {
             view.backgroundColor = .systemBackground

@@ -1,14 +1,14 @@
 //
-//  SecondaryLabel.swift
+//  CardLabel.swift
 //  QRDS
 //
-//  Created by Irving Martinez on 1/1/20.
+//  Created by Irving Martinez on 1/4/20.
 //  Copyright © 2020 Irving Martinez. All rights reserved.
 //
 
 import UIKit
 
-class SecondaryLabel: UILabel {
+class CardLabel: UILabel {
 
         override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,8 +28,8 @@ class SecondaryLabel: UILabel {
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
         font = UIFont.preferredFont(forTextStyle: .body)
-        textAlignment = .center
-        numberOfLines = 0
+        textAlignment = .left
+        numberOfLines = 1
         if #available(iOS 13.0, *) {
             textColor = .label
         } else {

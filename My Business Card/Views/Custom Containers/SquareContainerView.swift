@@ -12,6 +12,8 @@ class SquareContainerView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        translatesAutoresizingMaskIntoConstraints = false
+        setup()
     }
     
     required init?(coder: NSCoder) {

@@ -26,6 +26,9 @@
 		02782D4C23BEF4FF006F44C3 /* CardsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02782D4B23BEF4FF006F44C3 /* CardsVC.swift */; };
 		02782D5023BF0306006F44C3 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02782D4F23BF0306006F44C3 /* CardCell.swift */; };
 		02782D5523C01428006F44C3 /* ReceivedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02782D5423C01428006F44C3 /* ReceivedCard.swift */; };
+		02860E1623C156FF0086E324 /* TopCellContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02860E1523C156FF0086E324 /* TopCellContainer.swift */; };
+		02860E1823C171380086E324 /* BottomCellContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02860E1723C171380086E324 /* BottomCellContainer.swift */; };
+		02860E1A23C172BB0086E324 /* CardLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02860E1923C172BB0086E324 /* CardLabel.swift */; };
 		02E54B1122B16EC8000751CC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E54B1022B16EC8000751CC /* String+Extension.swift */; };
 		02E54B1422B33074000751CC /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E54B1322B33074000751CC /* PersistenceService.swift */; };
 		02E54B2822B35C94000751CC /* My_Business_Card.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02E54B2622B35C94000751CC /* My_Business_Card.xcdatamodeld */; };
@@ -59,6 +62,9 @@
 		02782D4B23BEF4FF006F44C3 /* CardsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsVC.swift; sourceTree = "<group>"; };
 		02782D4F23BF0306006F44C3 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		02782D5423C01428006F44C3 /* ReceivedCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedCard.swift; sourceTree = "<group>"; };
+		02860E1523C156FF0086E324 /* TopCellContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCellContainer.swift; sourceTree = "<group>"; };
+		02860E1723C171380086E324 /* BottomCellContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCellContainer.swift; sourceTree = "<group>"; };
+		02860E1923C172BB0086E324 /* CardLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLabel.swift; sourceTree = "<group>"; };
 		02E54B1022B16EC8000751CC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		02E54B1322B33074000751CC /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		02E54B2722B35C94000751CC /* My_Business_Card.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = My_Business_Card.xcdatamodel; sourceTree = "<group>"; };
@@ -108,6 +114,7 @@
 			children = (
 				02485E0F23BD7600002A5478 /* PrimaryLabel.swift */,
 				02485E1123BD774C002A5478 /* SecondaryLabel.swift */,
+				02860E1923C172BB0086E324 /* CardLabel.swift */,
 			);
 			path = "Custom Labels";
 			sourceTree = "<group>";
@@ -131,6 +138,7 @@
 		02485E1823BD7D6B002A5478 /* Custom Containers */ = {
 			isa = PBXGroup;
 			children = (
+				02860E1423C156DE0086E324 /* Cell Containers */,
 				02485E1923BD7D99002A5478 /* CircleContainerView.swift */,
 				02485E1E23BD9F5D002A5478 /* SquareContainerView.swift */,
 			);
@@ -162,6 +170,15 @@
 				02F0B5FA22A87F6000ED64C3 /* AppDelegate.swift */,
 			);
 			path = Supporting;
+			sourceTree = "<group>";
+		};
+		02860E1423C156DE0086E324 /* Cell Containers */ = {
+			isa = PBXGroup;
+			children = (
+				02860E1523C156FF0086E324 /* TopCellContainer.swift */,
+				02860E1723C171380086E324 /* BottomCellContainer.swift */,
+			);
+			path = "Cell Containers";
 			sourceTree = "<group>";
 		};
 		02E54B1222B3304D000751CC /* Service */ = {
@@ -330,17 +347,20 @@
 				02782D4823BEDFF6006F44C3 /* ViewController+Extensions.swift in Sources */,
 				02485E1223BD774C002A5478 /* SecondaryLabel.swift in Sources */,
 				02485E0E23BD66CE002A5478 /* QRCodeBuilder.swift in Sources */,
+				02860E1A23C172BB0086E324 /* CardLabel.swift in Sources */,
 				02E54B2822B35C94000751CC /* My_Business_Card.xcdatamodeld in Sources */,
 				02782D4C23BEF4FF006F44C3 /* CardsVC.swift in Sources */,
 				02E54B1422B33074000751CC /* PersistenceService.swift in Sources */,
 				02782D5023BF0306006F44C3 /* CardCell.swift in Sources */,
 				02485E1A23BD7D99002A5478 /* CircleContainerView.swift in Sources */,
 				02F0B60D22A8DD0200ED64C3 /* CardCollectionViewCell.swift in Sources */,
+				02860E1823C171380086E324 /* BottomCellContainer.swift in Sources */,
 				02485E0C23BD61C5002A5478 /* PrimaryTextField.swift in Sources */,
 				02782D4A23BEE696006F44C3 /* SocialVC.swift in Sources */,
 				02782D5523C01428006F44C3 /* ReceivedCard.swift in Sources */,
 				021648AF22C42214009AF692 /* ACVC+TextfieldDelegates.swift in Sources */,
 				02F0B5FB22A87F6000ED64C3 /* AppDelegate.swift in Sources */,
+				02860E1623C156FF0086E324 /* TopCellContainer.swift in Sources */,
 				021648AC22C41D9E009AF692 /* CVC+CollectionviewDelegate.swift in Sources */,
 				02E54B1122B16EC8000751CC /* String+Extension.swift in Sources */,
 				02E54B2A22B41F55000751CC /* Alert.swift in Sources */,

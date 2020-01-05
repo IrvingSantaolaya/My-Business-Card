@@ -19,6 +19,8 @@ class Constants {
     // MARK: Buttons
     static let next = "Next"
     static let finish = "Finish"
+    static let view = "View"
+    static let delete = "Delete"
     
     // MARK: Textfields
     static let cardNameField = "Card name"
@@ -39,11 +41,16 @@ class Constants {
     static let email = "email"
     static let twitter = "twitter"
     static let linkedin = "linkedin"
+    static let id = "identification"
     
     // MARK: Labels
     static let createCardInfo = "Start by naming your card. This will appear at the top of your card."
     static let enterInfo = "Now, enter basic contact info that you want to share."
     static let socialInfo = "If you'd like, you can enter some social media info too."
-    
     static let defaultCardTitle = "Card Title"
+    
+    // MARK: Colors
+    static let containerColor = "ContainerColor"
+    static let backgroundColor = "BackgroundColor"
+    static let cardColor = "CardColor"
 }
