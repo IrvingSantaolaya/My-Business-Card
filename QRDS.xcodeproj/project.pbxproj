@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		021648A822C41C64009AF692 /* CVC+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021648A722C41C64009AF692 /* CVC+ScrollView.swift */; };
-		021648AA22C41D13009AF692 /* CVC+CustomDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021648A922C41D13009AF692 /* CVC+CustomDelegates.swift */; };
-		021648AC22C41D9E009AF692 /* CVC+CollectionviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021648AB22C41D9E009AF692 /* CVC+CollectionviewDelegate.swift */; };
 		021648AF22C42214009AF692 /* ACVC+TextfieldDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021648AE22C42214009AF692 /* ACVC+TextfieldDelegates.swift */; };
 		02485E0623BBF1AA002A5478 /* CreateCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02485E0523BBF1AA002A5478 /* CreateCardVC.swift */; };
 		02485E0A23BD02E7002A5478 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02485E0923BD02E7002A5478 /* PrimaryButton.swift */; };
@@ -30,6 +28,7 @@
 		02860E1823C171380086E324 /* BottomCellContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02860E1723C171380086E324 /* BottomCellContainer.swift */; };
 		02860E1A23C172BB0086E324 /* CardLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02860E1923C172BB0086E324 /* CardLabel.swift */; };
 		02860E3E23CA64AA0086E324 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02860E3D23CA64AA0086E324 /* UIView+Extensions.swift */; };
+		02860E4023CA97990086E324 /* Deletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02860E3F23CA97990086E324 /* Deletable.swift */; };
 		02E54B1122B16EC8000751CC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E54B1022B16EC8000751CC /* String+Extension.swift */; };
 		02E54B1422B33074000751CC /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E54B1322B33074000751CC /* PersistenceService.swift */; };
 		02E54B2822B35C94000751CC /* My_Business_Card.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02E54B2622B35C94000751CC /* My_Business_Card.xcdatamodeld */; };
@@ -45,8 +44,6 @@
 
 /* Begin PBXFileReference section */
 		021648A722C41C64009AF692 /* CVC+ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVC+ScrollView.swift"; sourceTree = "<group>"; };
-		021648A922C41D13009AF692 /* CVC+CustomDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVC+CustomDelegates.swift"; sourceTree = "<group>"; };
-		021648AB22C41D9E009AF692 /* CVC+CollectionviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVC+CollectionviewDelegate.swift"; sourceTree = "<group>"; };
 		021648AE22C42214009AF692 /* ACVC+TextfieldDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ACVC+TextfieldDelegates.swift"; sourceTree = "<group>"; };
 		02485E0523BBF1AA002A5478 /* CreateCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCardVC.swift; sourceTree = "<group>"; };
 		02485E0923BD02E7002A5478 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -67,6 +64,7 @@
 		02860E1723C171380086E324 /* BottomCellContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCellContainer.swift; sourceTree = "<group>"; };
 		02860E1923C172BB0086E324 /* CardLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLabel.swift; sourceTree = "<group>"; };
 		02860E3D23CA64AA0086E324 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		02860E3F23CA97990086E324 /* Deletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deletable.swift; sourceTree = "<group>"; };
 		02E54B1022B16EC8000751CC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		02E54B1322B33074000751CC /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		02E54B2722B35C94000751CC /* My_Business_Card.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = My_Business_Card.xcdatamodel; sourceTree = "<group>"; };
@@ -93,16 +91,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		021648AD22C41DBE009AF692 /* CardsVCExtensions */ = {
-			isa = PBXGroup;
-			children = (
-				021648AB22C41D9E009AF692 /* CVC+CollectionviewDelegate.swift */,
-				021648A922C41D13009AF692 /* CVC+CustomDelegates.swift */,
-				021648A722C41C64009AF692 /* CVC+ScrollView.swift */,
-			);
-			path = CardsVCExtensions;
-			sourceTree = "<group>";
-		};
 		021648B022C42232009AF692 /* AddCardVCExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				02782D5423C01428006F44C3 /* ReceivedCard.swift */,
+				02860E3F23CA97990086E324 /* Deletable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -181,6 +170,15 @@
 				02860E1723C171380086E324 /* BottomCellContainer.swift */,
 			);
 			path = "Cell Containers";
+			sourceTree = "<group>";
+		};
+		02860E4123CA981B0086E324 /* CardsVC+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				02782D4B23BEF4FF006F44C3 /* CardsVC.swift */,
+				021648A722C41C64009AF692 /* CVC+ScrollView.swift */,
+			);
+			path = "CardsVC+Extensions";
 			sourceTree = "<group>";
 		};
 		02E54B1222B3304D000751CC /* Service */ = {
@@ -235,10 +233,9 @@
 			isa = PBXGroup;
 			children = (
 				02F0B5FC22A87F6000ED64C3 /* CardsViewController.swift */,
-				02782D4B23BEF4FF006F44C3 /* CardsVC.swift */,
+				02860E4123CA981B0086E324 /* CardsVC+Extensions */,
 				02F0B61022A9800E00ED64C3 /* AddCardViewController.swift */,
 				02485E1B23BD9E71002A5478 /* Add Card Flow */,
-				021648AD22C41DBE009AF692 /* CardsVCExtensions */,
 				021648B022C42232009AF692 /* AddCardVCExtensions */,
 			);
 			path = Controllers;
@@ -356,6 +353,7 @@
 				02782D4C23BEF4FF006F44C3 /* CardsVC.swift in Sources */,
 				02E54B1422B33074000751CC /* PersistenceService.swift in Sources */,
 				02782D5023BF0306006F44C3 /* CardCell.swift in Sources */,
+				02860E4023CA97990086E324 /* Deletable.swift in Sources */,
 				02485E1A23BD7D99002A5478 /* CircleContainerView.swift in Sources */,
 				02F0B60D22A8DD0200ED64C3 /* CardCollectionViewCell.swift in Sources */,
 				02860E1823C171380086E324 /* BottomCellContainer.swift in Sources */,
@@ -365,11 +363,9 @@
 				021648AF22C42214009AF692 /* ACVC+TextfieldDelegates.swift in Sources */,
 				02F0B5FB22A87F6000ED64C3 /* AppDelegate.swift in Sources */,
 				02860E1623C156FF0086E324 /* TopCellContainer.swift in Sources */,
-				021648AC22C41D9E009AF692 /* CVC+CollectionviewDelegate.swift in Sources */,
 				02E54B1122B16EC8000751CC /* String+Extension.swift in Sources */,
 				02E54B2A22B41F55000751CC /* Alert.swift in Sources */,
 				02485E1023BD7600002A5478 /* PrimaryLabel.swift in Sources */,
-				021648AA22C41D13009AF692 /* CVC+CustomDelegates.swift in Sources */,
 				021648A822C41C64009AF692 /* CVC+ScrollView.swift in Sources */,
 				02F0B61122A9800E00ED64C3 /* AddCardViewController.swift in Sources */,
 				02485E1F23BD9F5D002A5478 /* SquareContainerView.swift in Sources */,

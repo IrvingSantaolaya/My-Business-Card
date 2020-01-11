@@ -38,7 +38,6 @@ class CardsVC: UIViewController, CardReceiverDelegate {
         } else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         }
-        
     }
     
     func setupCollectionView() {
@@ -182,7 +181,6 @@ extension CardsVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func gotCard(card: Card) {
-        
         cards.append(card)
         PersistenceService.saveContext()
         collectionView?.reloadData()
@@ -192,6 +190,21 @@ extension CardsVC: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension CardsVC: Deletable {
     func deleteTapped(index: IndexPath) {
-        deleteCard(indexPath: index)
+        askToDelete(indexPath: index)
+    }
+    
+    func askToDelete(indexPath: IndexPath) {
+        // Action Sheet title and message
+        let alert = UIAlertController(title: "Are you sure you want to delete the current card?", message: "This cannot be undone.", preferredStyle: .actionSheet)
+        
+        // "Yes" option
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action) in
+            self.deleteCard(indexPath: indexPath)
+        }))
+        // "Cancel" option
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        // Present action sheet
+        self.present(alert, animated: true)
     }
 }

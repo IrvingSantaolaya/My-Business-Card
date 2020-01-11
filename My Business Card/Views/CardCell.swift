@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol Deletable {
-    func deleteTapped(index: IndexPath)
-}
-
 class CardCell: UICollectionViewCell {
     
     private var topContainerView = TopCellContainer()

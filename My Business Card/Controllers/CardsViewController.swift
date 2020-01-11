@@ -229,21 +229,7 @@ class CardsViewController: UIViewController {
     
     
     // Create action sheet to confirm deletion
-    func askToDelete() {
-        
-        // Action Sheet title and message
-        let alert = UIAlertController(title: "Are you sure you want to delete the current QRD?", message: "This cannot be undone.", preferredStyle: .actionSheet)
-        
-        // "Yes" option
-        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action) in
-            self.deleteCard()
-        }))
-        // "Cancel" option
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        // Present action sheet
-        self.present(alert, animated: true)
-    }
+
     
 }
  */
