@@ -11,28 +11,12 @@ import UIKit
 // MARK: - ScrollView Delegate methods
 extension CardsVC: UIScrollViewDelegate {
     
-    // Create "Stop in the middle" effect for CollectionView
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
-        scrollView.decelerationRate = UIScrollView.DecelerationRate(rawValue: 0.65)
-        // Get the layout for collectionView
-        let layout = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
-        // Get width including spacing
-        let cellWidthSpacing = layout.itemSize.width + layout.minimumLineSpacing
-        var offset = targetContentOffset.pointee
-        // Get index by calculating amount of cells that have scrolled; rounded
-        let index = (offset.x + scrollView.contentInset.left) / cellWidthSpacing
-        let roundedIndex = round(index)
-        // Set current Index global
-        currentIndex = Int(roundedIndex)
-        // Set the offset
-        offset = CGPoint(x: roundedIndex * cellWidthSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
-        // Stop at the offset
-        targetContentOffset.pointee = offset
-    }
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         impactFeedbackgenerator.impactOccurred()
     }
     
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
+        pageControl.currentPage = Int(pageNumber)
+    }
 }

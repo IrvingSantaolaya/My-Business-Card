@@ -11,7 +11,6 @@ import UIKit
 class TopCellContainer: UIView {
 
     var titleLabel = PrimaryLabel(text: Constants.defaultCardTitle)
-    private let containerView = SquareContainerView(radius: 20)
     
     // MARK: Computed Properties
     private let titleIcon: UIImageView = {
@@ -59,7 +58,6 @@ class TopCellContainer: UIView {
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .clear
-
     }
     
     private func setupTitle() {
@@ -79,23 +77,24 @@ class TopCellContainer: UIView {
     
     private func setupQrImage() {
         
-        containerView.backgroundColor = UIColor(named: Constants.containerColor)
-        addSubview(containerView)
-        NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: titleStackView.bottomAnchor, constant: 6),
-            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -6),
-            containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            containerView.widthAnchor.constraint(equalTo: containerView.heightAnchor)
-            
-        ])
-        containerView.addSubview(qrImageView)
+        addSubview(qrImageView)
+        qrImageView.dropShadow(color: .black)
         
         NSLayoutConstraint.activate([
-            qrImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
-            qrImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
-            qrImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
-            qrImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
+            qrImageView.topAnchor.constraint(equalTo: titleStackView.bottomAnchor, constant: 6),
+            qrImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -6),
+            qrImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            qrImageView.widthAnchor.constraint(equalTo: qrImageView.heightAnchor)
+            
         ])
+//        containerView.addSubview(qrImageView)
+//
+//        NSLayoutConstraint.activate([
+//            qrImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
+//            qrImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
+//            qrImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
+//            qrImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
+//        ])
         
         
     }

@@ -20,6 +20,7 @@ class PrimaryButton: UIButton {
         self.backgroundColor = color
         self.setTitle(title, for: .normal)
         setup()
+        dropShadow(color: color)
     }
     
     required init?(coder: NSCoder) {
@@ -32,5 +33,6 @@ class PrimaryButton: UIButton {
         layer.cornerRadius = 10
         titleLabel?.textColor = .white
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+        layer.masksToBounds = false
     }
 }

@@ -27,7 +27,7 @@ class SquareContainerView: UIView {
     }
     
     private func setup() {
-       translatesAutoresizingMaskIntoConstraints = false
+        translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 13.0, *) {
             backgroundColor = UIColor.secondarySystemBackground
         } else {

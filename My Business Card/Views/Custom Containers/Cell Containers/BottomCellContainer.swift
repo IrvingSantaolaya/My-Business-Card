@@ -31,10 +31,11 @@ class BottomCellContainer: UIView {
         if #available(iOS 13.0, *) {
             color = UIColor.systemIndigo
         }
-        return PrimaryButton(color: color, title: Constants.view)
+        let button = PrimaryButton(color: color, title: Constants.view)
+        return button
     }()
     
-    private let deleteButton: UIButton = {
+        let deleteButton: UIButton = {
         let button = UIButton()
         button.setTitle(Constants.delete, for: .normal)
         button.setTitleColor(UIColor.systemRed, for: .normal)
@@ -119,7 +120,6 @@ class BottomCellContainer: UIView {
             mainStackView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
         ])
-        
         mainStackView.addArrangedSubview(topContainer)
         mainStackView.addArrangedSubview(bottomContainer)
         
@@ -128,7 +128,7 @@ class BottomCellContainer: UIView {
     private func setupIdImage() {
         
         topContainer.addSubview(circleView)
-        circleView.backgroundColor = UIColor(named: Constants.backgroundColor)
+        circleView.backgroundColor = UIColor(named: Constants.cardColor)
         
         NSLayoutConstraint.activate([
             circleView.centerYAnchor.constraint(equalTo: topContainer.centerYAnchor),

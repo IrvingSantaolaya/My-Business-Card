@@ -8,13 +8,19 @@
 
 import UIKit
 
+protocol Deletable {
+    func deleteTapped(index: IndexPath)
+}
+
 class CardCell: UICollectionViewCell {
     
     private var topContainerView = TopCellContainer()
     private let bottomContainerView = BottomCellContainer()
     private var height: CGFloat?
     private var width: CGFloat?
+    var delegate: Deletable?
     
+    var index: IndexPath?
     var card: Card? {
         didSet {
             setCard(card: card)
@@ -37,7 +43,7 @@ class CardCell: UICollectionViewCell {
     func configureCellUI() {
         // Content view border and rounded corners
         contentView.backgroundColor = UIColor(named: Constants.cardColor)
-  
+        bottomContainerView.deleteButton.addTarget(self, action: #selector(deleteTapped), for: .touchUpInside)
     }
     
     private func setupContainers() {
@@ -88,5 +94,10 @@ class CardCell: UICollectionViewCell {
             bottomContainerView.workLabel.text = card.jobTitle != nil ? card.jobTitle! : card.company!
         }
         
+    }
+    
+    @objc func deleteTapped() {
+        guard let index = index else { return }
+        delegate?.deleteTapped(index: index)
     }
 }
