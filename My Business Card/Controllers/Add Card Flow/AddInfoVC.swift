@@ -24,7 +24,7 @@ class AddInfoVC: UIViewController {
     private let padding: CGFloat = 20
     private let fieldHeight: CGFloat = 32
     
-    var delegate: CardReceiverDelegate?
+    var delegate: CardReceivable?
     
     // Computed properties
     private let nextButton: PrimaryButton = {
@@ -150,7 +150,7 @@ class AddInfoVC: UIViewController {
     }
 }
 
-extension AddInfoVC: CardReceiverDelegate {
+extension AddInfoVC: CardReceivable {
     
     func gotCard(card: Card) {
         delegate?.gotCard(card: card)

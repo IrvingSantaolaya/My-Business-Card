@@ -8,7 +8,7 @@
 
 import UIKit
 
-// MARK: - ScrollView Delegate methods
+// MARK: - ScrollView Delegate methods for collectionView
 extension CardsVC: UIScrollViewDelegate {
     
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {

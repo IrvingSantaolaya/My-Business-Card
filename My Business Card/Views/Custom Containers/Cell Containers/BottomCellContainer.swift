@@ -10,28 +10,27 @@ import UIKit
 
 class BottomCellContainer: UIView {
     
+    // MARK: Properties
+    
     var workLabel = CardLabel()
     var nameLabel = CardLabel()
     var phoneLabel = CardLabel()
+    private let circleView = CircleContainerView(size: 80)
     
+    // Computed properties
     private let idImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: Constants.id)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    private let nameImageView = UIImageView()
-    private let phoneImageView = UIImageView()
-    let circleView = CircleContainerView(size: 80)
     
-    // MARK: Computed properties
-    
-    private let viewButton: PrimaryButton = {
+    let shareButton: PrimaryButton = {
         var color: UIColor = UIColor.purple
         if #available(iOS 13.0, *) {
             color = UIColor.systemIndigo
         }
-        let button = PrimaryButton(color: color, title: Constants.view)
+        let button = PrimaryButton(color: color, title: Constants.share)
         return button
     }()
     
@@ -86,6 +85,8 @@ class BottomCellContainer: UIView {
         return stacker
     }()
     
+    // MARK: Inits
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
@@ -106,13 +107,14 @@ class BottomCellContainer: UIView {
         setupButtons()
     }
     
+    // MARK: Configure UI
+    
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .clear
     }
     
     private func setupContainer() {
-        
         addSubview(mainStackView)
         NSLayoutConstraint.activate([
             mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
@@ -122,11 +124,9 @@ class BottomCellContainer: UIView {
         ])
         mainStackView.addArrangedSubview(topContainer)
         mainStackView.addArrangedSubview(bottomContainer)
-        
     }
     
     private func setupIdImage() {
-        
         topContainer.addSubview(circleView)
         circleView.backgroundColor = UIColor(named: Constants.cardColor)
         
@@ -136,7 +136,6 @@ class BottomCellContainer: UIView {
             circleView.widthAnchor.constraint(equalToConstant: 80),
             circleView.heightAnchor.constraint(equalToConstant: 80)
         ])
-        
         circleView.addSubview(idImageView)
         
         NSLayoutConstraint.activate([
@@ -163,25 +162,23 @@ class BottomCellContainer: UIView {
     }
     
     private func setupButtons() {
-        
-        bottomContainer.addSubview(viewButton)
+        bottomContainer.addSubview(shareButton)
         
         NSLayoutConstraint.activate([
-            viewButton.centerYAnchor.constraint(equalTo: bottomContainer.centerYAnchor, constant: -20),
-            viewButton.leadingAnchor.constraint(equalTo: bottomContainer.leadingAnchor, constant: 8),
-            viewButton.trailingAnchor.constraint(equalTo: bottomContainer.trailingAnchor, constant: -8),
-            viewButton.heightAnchor.constraint(equalToConstant: 50),
+            shareButton.centerYAnchor.constraint(equalTo: bottomContainer.centerYAnchor, constant: -20),
+            shareButton.leadingAnchor.constraint(equalTo: bottomContainer.leadingAnchor, constant: 8),
+            shareButton.trailingAnchor.constraint(equalTo: bottomContainer.trailingAnchor, constant: -8),
+            shareButton.heightAnchor.constraint(equalToConstant: 50),
         ])
         
         bottomContainer.addSubview(deleteButton)
         
         NSLayoutConstraint.activate([
-            deleteButton.topAnchor.constraint(equalTo: viewButton.bottomAnchor, constant: 18),
+            deleteButton.topAnchor.constraint(equalTo: shareButton.bottomAnchor, constant: 18),
             deleteButton
                 .centerXAnchor.constraint(equalTo: bottomContainer.centerXAnchor),
             deleteButton.widthAnchor.constraint(equalToConstant: 60),
             deleteButton.heightAnchor.constraint(equalToConstant: 20)
         ])
-        
     }
 }

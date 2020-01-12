@@ -19,7 +19,7 @@ class Constants {
     // MARK: Buttons
     static let next = "Next"
     static let finish = "Finish"
-    static let view = "View"
+    static let share = "Share"
     static let delete = "Delete"
     
     // MARK: Textfields

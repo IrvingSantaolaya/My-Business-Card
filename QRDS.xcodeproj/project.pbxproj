@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0205AA6323CBA436003CCA48 /* Shareable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0205AA6223CBA436003CCA48 /* Shareable.swift */; };
 		021648A822C41C64009AF692 /* CVC+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021648A722C41C64009AF692 /* CVC+ScrollView.swift */; };
 		021648AF22C42214009AF692 /* ACVC+TextfieldDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021648AE22C42214009AF692 /* ACVC+TextfieldDelegates.swift */; };
 		02485E0623BBF1AA002A5478 /* CreateCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02485E0523BBF1AA002A5478 /* CreateCardVC.swift */; };
@@ -34,15 +35,14 @@
 		02E54B2822B35C94000751CC /* My_Business_Card.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02E54B2622B35C94000751CC /* My_Business_Card.xcdatamodeld */; };
 		02E54B2A22B41F55000751CC /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E54B2922B41F55000751CC /* Alert.swift */; };
 		02F0B5FB22A87F6000ED64C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F0B5FA22A87F6000ED64C3 /* AppDelegate.swift */; };
-		02F0B5FD22A87F6000ED64C3 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F0B5FC22A87F6000ED64C3 /* CardsViewController.swift */; };
 		02F0B60022A87F6000ED64C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F0B5FE22A87F6000ED64C3 /* Main.storyboard */; };
 		02F0B60222A87F6100ED64C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02F0B60122A87F6100ED64C3 /* Assets.xcassets */; };
 		02F0B60522A87F6100ED64C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F0B60322A87F6100ED64C3 /* LaunchScreen.storyboard */; };
-		02F0B60D22A8DD0200ED64C3 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F0B60C22A8DD0200ED64C3 /* CardCollectionViewCell.swift */; };
 		02F0B61122A9800E00ED64C3 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F0B61022A9800E00ED64C3 /* AddCardViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0205AA6223CBA436003CCA48 /* Shareable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shareable.swift; sourceTree = "<group>"; };
 		021648A722C41C64009AF692 /* CVC+ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVC+ScrollView.swift"; sourceTree = "<group>"; };
 		021648AE22C42214009AF692 /* ACVC+TextfieldDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ACVC+TextfieldDelegates.swift"; sourceTree = "<group>"; };
 		02485E0523BBF1AA002A5478 /* CreateCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCardVC.swift; sourceTree = "<group>"; };
@@ -71,12 +71,10 @@
 		02E54B2922B41F55000751CC /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		02F0B5F722A87F6000ED64C3 /* QRDS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRDS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F0B5FA22A87F6000ED64C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		02F0B5FC22A87F6000ED64C3 /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		02F0B5FF22A87F6000ED64C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		02F0B60122A87F6100ED64C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02F0B60422A87F6100ED64C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02F0B60622A87F6100ED64C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		02F0B60C22A8DD0200ED64C3 /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		02F0B61022A9800E00ED64C3 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,6 +148,7 @@
 			children = (
 				02782D5423C01428006F44C3 /* ReceivedCard.swift */,
 				02860E3F23CA97990086E324 /* Deletable.swift */,
+				0205AA6223CBA436003CCA48 /* Shareable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -232,7 +231,6 @@
 		02F0B61322AA137700ED64C3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				02F0B5FC22A87F6000ED64C3 /* CardsViewController.swift */,
 				02860E4123CA981B0086E324 /* CardsVC+Extensions */,
 				02F0B61022A9800E00ED64C3 /* AddCardViewController.swift */,
 				02485E1B23BD9E71002A5478 /* Add Card Flow */,
@@ -244,7 +242,6 @@
 		02F0B61422AA138700ED64C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				02F0B60C22A8DD0200ED64C3 /* CardCollectionViewCell.swift */,
 				02782D4F23BF0306006F44C3 /* CardCell.swift */,
 				02485E1823BD7D6B002A5478 /* Custom Containers */,
 				02485E1623BD7D29002A5478 /* Custom Buttons */,
@@ -341,7 +338,6 @@
 			files = (
 				02485E0623BBF1AA002A5478 /* CreateCardVC.swift in Sources */,
 				02485E1423BD7958002A5478 /* Constants.swift in Sources */,
-				02F0B5FD22A87F6000ED64C3 /* CardsViewController.swift in Sources */,
 				02485E0A23BD02E7002A5478 /* PrimaryButton.swift in Sources */,
 				02485E1D23BD9EAC002A5478 /* AddInfoVC.swift in Sources */,
 				02782D4823BEDFF6006F44C3 /* ViewController+Extensions.swift in Sources */,
@@ -354,8 +350,8 @@
 				02E54B1422B33074000751CC /* PersistenceService.swift in Sources */,
 				02782D5023BF0306006F44C3 /* CardCell.swift in Sources */,
 				02860E4023CA97990086E324 /* Deletable.swift in Sources */,
+				0205AA6323CBA436003CCA48 /* Shareable.swift in Sources */,
 				02485E1A23BD7D99002A5478 /* CircleContainerView.swift in Sources */,
-				02F0B60D22A8DD0200ED64C3 /* CardCollectionViewCell.swift in Sources */,
 				02860E1823C171380086E324 /* BottomCellContainer.swift in Sources */,
 				02485E0C23BD61C5002A5478 /* PrimaryTextField.swift in Sources */,
 				02782D4A23BEE696006F44C3 /* SocialVC.swift in Sources */,
@@ -522,6 +518,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.IrvingCodes.QRDS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -541,6 +538,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.IrvingCodes.QRDS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

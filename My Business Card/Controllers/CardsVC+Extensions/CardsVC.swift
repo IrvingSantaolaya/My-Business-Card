@@ -9,9 +9,10 @@
 import UIKit
 import CoreData
 
-class CardsVC: UIViewController, CardReceiverDelegate {
+class CardsVC: UIViewController {
     
     // MARK: - Properties
+    
     var cards = [Card]()
     var collectionView: UICollectionView?
     var currentIndex = 0
@@ -20,6 +21,7 @@ class CardsVC: UIViewController, CardReceiverDelegate {
     private let qrBuilder = QRCodeBuilder()
     
     // MARK: Inits
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
@@ -29,6 +31,7 @@ class CardsVC: UIViewController, CardReceiverDelegate {
     }
     
     // MARK: Setup UI
+    
     func setupNavBar() {
         title = Constants.cards
         if #available(iOS 13.0, *) {
@@ -95,6 +98,7 @@ class CardsVC: UIViewController, CardReceiverDelegate {
         ])
         
     }
+    // MARK: Actions
     
     @objc func addTapped() {
         let newCardVC = CreateCardVC()
@@ -108,7 +112,18 @@ class CardsVC: UIViewController, CardReceiverDelegate {
         print("Here")
     }
     
+    func deleteCard(indexPath: IndexPath) {
+        // Delete card
+        // Remove card in array, coredata store, and collectionview
+        PersistenceService.context.delete(cards[indexPath.item])
+        cards.remove(at: indexPath.item)
+        
+        collectionView?.deleteItems(at: [indexPath])
+        collectionView?.reloadData()
+    }
+    
     // MARK: Helpers
+    
     func fetchSavedData() {
         let fetchRequest: NSFetchRequest<Card> = Card.fetchRequest()
         
@@ -122,21 +137,13 @@ class CardsVC: UIViewController, CardReceiverDelegate {
             #warning("alert")
         }
     }
-    
-    func deleteCard(indexPath: IndexPath) {
-        // Delete card
-        // Remove card in array, coredata store, and collectionview
-        PersistenceService.context.delete(cards[indexPath.item])
-        cards.remove(at: indexPath.item)
-        
-        collectionView?.deleteItems(at: [indexPath])
-        collectionView?.reloadData()
-    }
 }
 
-// MARK: - Delegates and datasource methods
+// MARK: - CollectionView delegate methods
+
 extension CardsVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
+    // Flowlayout item size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let height = view.frame.size.height
@@ -145,23 +152,34 @@ extension CardsVC: UICollectionViewDelegate, UICollectionViewDataSource {
         return CGSize(width: width * 0.9, height: height * 0.6)
     }
     
-    // Set the amount of cards
+    // Amount of cards
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cards.count
     }
     
+    // Custom cells
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "card", for: indexPath) as! CardCell
         
+        // Set values
         cell.card = cards[indexPath.item]
         cell.index = indexPath
-        cell.delegate = self
+        cell.deleteDelegate = self
+        cell.shareDelegate = self
         
+        // Configure contentView
         cell.contentView.layer.cornerRadius = 20
         cell.contentView.layer.borderWidth = 1
         cell.contentView.layer.masksToBounds = true
+        cell.contentView.layer.masksToBounds = true
+        if #available(iOS 13.0, *) {
+            cell.contentView.layer.borderColor = UIColor.quaternarySystemFill.cgColor
+        } else {
+            cell.contentView.layer.borderColor = UIColor.lightGray.cgColor
+        }
         
+        // Configure layer
         cell.layer.shadowColor = UIColor.black.cgColor
         cell.layer.shadowOffset = CGSize(width: 0, height: 10.0)
         cell.layer.shadowRadius = 8.0
@@ -169,42 +187,51 @@ extension CardsVC: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.layer.masksToBounds = false
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
         
-        if #available(iOS 13.0, *) {
-            cell.contentView.layer.borderColor = UIColor.quaternarySystemFill.cgColor
-        } else {
-            // Fallback on earlier versions
-        }
-        cell.contentView.layer.masksToBounds = true
-        
         return cell
-        
-    }
-    
-    func gotCard(card: Card) {
-        cards.append(card)
-        PersistenceService.saveContext()
-        collectionView?.reloadData()
     }
     
 }
+// MARK: Custom delegate methods
 
-extension CardsVC: Deletable {
+extension CardsVC: Deletable, Shareable, CardReceivable {
+    func shareTapped(index: IndexPath) {
+        guard let qrCodeImage = cards[index.item].qrCodeImage else {
+            #warning("Alert")
+            return
+        }
+        // image to share
+        let image = UIImage(data: qrCodeImage)
+        // Check that image is not nil
+        guard let checkedImage = image else {
+            #warning("Alert")
+            return
+        }
+        // Create and present activity sheet
+        let imageToShare = [checkedImage]
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        activityViewController.excludedActivityTypes = [UIActivity.ActivityType.postToFacebook]
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
     func deleteTapped(index: IndexPath) {
         askToDelete(indexPath: index)
     }
     
+    // Create and present action sheet
     func askToDelete(indexPath: IndexPath) {
-        // Action Sheet title and message
         let alert = UIAlertController(title: "Are you sure you want to delete the current card?", message: "This cannot be undone.", preferredStyle: .actionSheet)
-        
-        // "Yes" option
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action) in
             self.deleteCard(indexPath: indexPath)
         }))
-        // "Cancel" option
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        // Present action sheet
         self.present(alert, animated: true)
+    }
+    
+    // Add the new card to collection view, cards array, and save context
+    func gotCard(card: Card) {
+        cards.append(card)
+        PersistenceService.saveContext()
+        collectionView?.reloadData()
     }
 }

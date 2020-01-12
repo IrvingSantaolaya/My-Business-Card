@@ -25,7 +25,7 @@ class SocialVC: UIViewController {
     private let fieldHeight: CGFloat = 32
     private let qrBuilder = QRCodeBuilder()
     
-    var delegate: CardReceiverDelegate?
+    var delegate: CardReceivable?
     
     // Computed properties
     private let nextButton: PrimaryButton = {

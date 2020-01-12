@@ -10,20 +10,22 @@ import UIKit
 
 class CardCell: UICollectionViewCell {
     
+    // MARK: Properties
     private var topContainerView = TopCellContainer()
     private let bottomContainerView = BottomCellContainer()
     private var height: CGFloat?
     private var width: CGFloat?
-    var delegate: Deletable?
-    
+    var deleteDelegate: Deletable?
+    var shareDelegate: Shareable?
     var index: IndexPath?
+    
     var card: Card? {
         didSet {
             setCard(card: card)
         }
     }
 
-    // MARK: - Init
+    // MARK: - Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
         height = contentView.frame.height
@@ -36,18 +38,20 @@ class CardCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCellUI() {
+    // MARK: Configure UI
+    private func configureCellUI() {
         // Content view border and rounded corners
         contentView.backgroundColor = UIColor(named: Constants.cardColor)
         bottomContainerView.deleteButton.addTarget(self, action: #selector(deleteTapped), for: .touchUpInside)
+        bottomContainerView.shareButton.addTarget(self, action: #selector(shareTapped), for: .touchUpInside)
     }
     
     private func setupContainers() {
-        
         guard let height = height, let width = width else { return }
         
         addSubview(topContainerView)
         addSubview(bottomContainerView)
+        
         NSLayoutConstraint.activate([
             topContainerView.centerXAnchor.constraint(equalTo: centerXAnchor),
             topContainerView.topAnchor.constraint(equalTo: topAnchor),
@@ -59,21 +63,18 @@ class CardCell: UICollectionViewCell {
             bottomContainerView.widthAnchor.constraint(equalToConstant: width),
             bottomContainerView.heightAnchor.constraint(equalToConstant: height / 2)
         ])
-
     }
     
-    func setCard(card: Card?) {
-        // Check that card is not nil
+    // Configure card
+    private func setCard(card: Card?) {
         guard let card = card else {
-            // Show error
+            #warning("Alert")
             return
         }
-        // Check that the qrcode exists for the card
         guard let imageData = card.qrCodeImage else {
-            // Show error
+            #warning("Alert")
             return
         }
-        // Set the QRCode image for the cell
         let image = UIImage(data: imageData)
         topContainerView.qrImageView.image = image
         topContainerView.titleLabel.text = card.cardName
@@ -85,15 +86,20 @@ class CardCell: UICollectionViewCell {
         if card.jobTitle != "" && card.company != ""{
             bottomContainerView.workLabel.text = "\(card.jobTitle!) @ \(card.company!)"
         }
-        
         else {
             bottomContainerView.workLabel.text = card.jobTitle != nil ? card.jobTitle! : card.company!
         }
-        
+    }
+    
+    // MARK: Actions
+    
+    @objc func shareTapped() {
+        guard let index = index else { return }
+        shareDelegate?.shareTapped(index: index)
     }
     
     @objc func deleteTapped() {
         guard let index = index else { return }
-        delegate?.deleteTapped(index: index)
+        deleteDelegate?.deleteTapped(index: index)
     }
 }

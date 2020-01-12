@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol CardReceiverDelegate {
+protocol CardReceivable {
     func gotCard(card: Card)
 }

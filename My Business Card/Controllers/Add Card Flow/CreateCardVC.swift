@@ -19,7 +19,7 @@ class CreateCardVC: UIViewController {
     private let textfield = PrimaryTextField(placeholder: Constants.cardNameField)
     private let padding: CGFloat = 20
     
-    var delegate: CardReceiverDelegate?
+    var delegate: CardReceivable?
     // Computed properties
     private let nextButton: PrimaryButton = {
         var color: UIColor = UIColor.purple
@@ -118,7 +118,7 @@ class CreateCardVC: UIViewController {
     }
 }
 
-extension CreateCardVC: CardReceiverDelegate {
+extension CreateCardVC: CardReceivable {
     func gotCard(card: Card) {
         delegate?.gotCard(card: card)
     }
