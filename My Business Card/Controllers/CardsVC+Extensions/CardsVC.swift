@@ -112,12 +112,12 @@ class CardsVC: UIViewController {
     
     func deleteCard(indexPath: IndexPath) {
         // Delete card
-        // Remove card in array, coredata store, and collectionview
         PersistenceService.context.delete(cards[indexPath.item])
         cards.remove(at: indexPath.item)
         
         collectionView?.deleteItems(at: [indexPath])
         collectionView?.reloadData()
+        pageControl.numberOfPages = cards.count
     }
     
     // MARK: Helpers
@@ -230,5 +230,6 @@ extension CardsVC: Deletable, Shareable, CardReceivable {
         cards.append(card)
         PersistenceService.saveContext()
         collectionView?.reloadData()
+        pageControl.numberOfPages = cards.count
     }
 }
