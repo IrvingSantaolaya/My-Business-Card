@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F203" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19B86a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Card" representedClassName="Card" syncable="YES" codeGenerationType="class">
-        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="jobTitle" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="qrCodeImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="cardColor" optional="YES" attributeType="String"/>
+        <attribute name="cardName" optional="YES" attributeType="String"/>
+        <attribute name="company" optional="YES" attributeType="String"/>
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="jobTitle" optional="YES" attributeType="String"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <attribute name="linkedin" optional="YES" attributeType="String"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
+        <attribute name="qrCodeImage" optional="YES" attributeType="Binary"/>
+        <attribute name="twitter" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Card" positionX="-54" positionY="-9" width="128" height="135"/>
+        <element name="Card" positionX="-54" positionY="-9" width="128" height="223"/>
     </elements>
 </model>

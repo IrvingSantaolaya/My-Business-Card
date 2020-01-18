@@ -7,41 +7,69 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0205AA6323CBA436003CCA48 /* Shareable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0205AA6223CBA436003CCA48 /* Shareable.swift */; };
 		021648A822C41C64009AF692 /* CVC+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021648A722C41C64009AF692 /* CVC+ScrollView.swift */; };
-		021648AA22C41D13009AF692 /* CVC+CustomDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021648A922C41D13009AF692 /* CVC+CustomDelegates.swift */; };
-		021648AC22C41D9E009AF692 /* CVC+CollectionviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021648AB22C41D9E009AF692 /* CVC+CollectionviewDelegate.swift */; };
-		021648AF22C42214009AF692 /* ACVC+TextfieldDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021648AE22C42214009AF692 /* ACVC+TextfieldDelegates.swift */; };
-		02E54B1122B16EC8000751CC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E54B1022B16EC8000751CC /* String+Extension.swift */; };
+		02485E0623BBF1AA002A5478 /* CreateCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02485E0523BBF1AA002A5478 /* CreateCardVC.swift */; };
+		02485E0A23BD02E7002A5478 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02485E0923BD02E7002A5478 /* PrimaryButton.swift */; };
+		02485E0C23BD61C5002A5478 /* PrimaryTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02485E0B23BD61C5002A5478 /* PrimaryTextField.swift */; };
+		02485E0E23BD66CE002A5478 /* QRCodeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02485E0D23BD66CE002A5478 /* QRCodeBuilder.swift */; };
+		02485E1023BD7600002A5478 /* PrimaryLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02485E0F23BD7600002A5478 /* PrimaryLabel.swift */; };
+		02485E1223BD774C002A5478 /* SecondaryLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02485E1123BD774C002A5478 /* SecondaryLabel.swift */; };
+		02485E1423BD7958002A5478 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02485E1323BD7958002A5478 /* Constants.swift */; };
+		02485E1A23BD7D99002A5478 /* CircleContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02485E1923BD7D99002A5478 /* CircleContainerView.swift */; };
+		02485E1D23BD9EAC002A5478 /* AddInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02485E1C23BD9EAC002A5478 /* AddInfoVC.swift */; };
+		02485E1F23BD9F5D002A5478 /* SquareContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02485E1E23BD9F5D002A5478 /* SquareContainerView.swift */; };
+		02782D4823BEDFF6006F44C3 /* ViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02782D4723BEDFF6006F44C3 /* ViewController+Extensions.swift */; };
+		02782D4A23BEE696006F44C3 /* SocialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02782D4923BEE696006F44C3 /* SocialVC.swift */; };
+		02782D4C23BEF4FF006F44C3 /* CardsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02782D4B23BEF4FF006F44C3 /* CardsVC.swift */; };
+		02782D5023BF0306006F44C3 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02782D4F23BF0306006F44C3 /* CardCell.swift */; };
+		02782D5523C01428006F44C3 /* ReceivedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02782D5423C01428006F44C3 /* ReceivedCard.swift */; };
+		02860E1623C156FF0086E324 /* TopCellContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02860E1523C156FF0086E324 /* TopCellContainer.swift */; };
+		02860E1823C171380086E324 /* BottomCellContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02860E1723C171380086E324 /* BottomCellContainer.swift */; };
+		02860E1A23C172BB0086E324 /* CardLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02860E1923C172BB0086E324 /* CardLabel.swift */; };
+		02860E3E23CA64AA0086E324 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02860E3D23CA64AA0086E324 /* UIView+Extensions.swift */; };
+		02860E4023CA97990086E324 /* Deletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02860E3F23CA97990086E324 /* Deletable.swift */; };
+		02D48B3023D3B5DE00E6DA3A /* CustomAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D48B2F23D3B5DE00E6DA3A /* CustomAlertVC.swift */; };
 		02E54B1422B33074000751CC /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E54B1322B33074000751CC /* PersistenceService.swift */; };
 		02E54B2822B35C94000751CC /* My_Business_Card.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02E54B2622B35C94000751CC /* My_Business_Card.xcdatamodeld */; };
-		02E54B2A22B41F55000751CC /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E54B2922B41F55000751CC /* Alert.swift */; };
 		02F0B5FB22A87F6000ED64C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F0B5FA22A87F6000ED64C3 /* AppDelegate.swift */; };
-		02F0B5FD22A87F6000ED64C3 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F0B5FC22A87F6000ED64C3 /* CardsViewController.swift */; };
 		02F0B60022A87F6000ED64C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F0B5FE22A87F6000ED64C3 /* Main.storyboard */; };
 		02F0B60222A87F6100ED64C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02F0B60122A87F6100ED64C3 /* Assets.xcassets */; };
 		02F0B60522A87F6100ED64C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F0B60322A87F6100ED64C3 /* LaunchScreen.storyboard */; };
-		02F0B60D22A8DD0200ED64C3 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F0B60C22A8DD0200ED64C3 /* CardCollectionViewCell.swift */; };
-		02F0B61122A9800E00ED64C3 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F0B61022A9800E00ED64C3 /* AddCardViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0205AA6223CBA436003CCA48 /* Shareable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shareable.swift; sourceTree = "<group>"; };
 		021648A722C41C64009AF692 /* CVC+ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVC+ScrollView.swift"; sourceTree = "<group>"; };
-		021648A922C41D13009AF692 /* CVC+CustomDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVC+CustomDelegates.swift"; sourceTree = "<group>"; };
-		021648AB22C41D9E009AF692 /* CVC+CollectionviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVC+CollectionviewDelegate.swift"; sourceTree = "<group>"; };
-		021648AE22C42214009AF692 /* ACVC+TextfieldDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ACVC+TextfieldDelegates.swift"; sourceTree = "<group>"; };
-		02E54B1022B16EC8000751CC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		02485E0523BBF1AA002A5478 /* CreateCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCardVC.swift; sourceTree = "<group>"; };
+		02485E0923BD02E7002A5478 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		02485E0B23BD61C5002A5478 /* PrimaryTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryTextField.swift; sourceTree = "<group>"; };
+		02485E0D23BD66CE002A5478 /* QRCodeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeBuilder.swift; sourceTree = "<group>"; };
+		02485E0F23BD7600002A5478 /* PrimaryLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryLabel.swift; sourceTree = "<group>"; };
+		02485E1123BD774C002A5478 /* SecondaryLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryLabel.swift; sourceTree = "<group>"; };
+		02485E1323BD7958002A5478 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		02485E1923BD7D99002A5478 /* CircleContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleContainerView.swift; sourceTree = "<group>"; };
+		02485E1C23BD9EAC002A5478 /* AddInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInfoVC.swift; sourceTree = "<group>"; };
+		02485E1E23BD9F5D002A5478 /* SquareContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareContainerView.swift; sourceTree = "<group>"; };
+		02782D4723BEDFF6006F44C3 /* ViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extensions.swift"; sourceTree = "<group>"; };
+		02782D4923BEE696006F44C3 /* SocialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialVC.swift; sourceTree = "<group>"; };
+		02782D4B23BEF4FF006F44C3 /* CardsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsVC.swift; sourceTree = "<group>"; };
+		02782D4F23BF0306006F44C3 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		02782D5423C01428006F44C3 /* ReceivedCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedCard.swift; sourceTree = "<group>"; };
+		02860E1523C156FF0086E324 /* TopCellContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCellContainer.swift; sourceTree = "<group>"; };
+		02860E1723C171380086E324 /* BottomCellContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCellContainer.swift; sourceTree = "<group>"; };
+		02860E1923C172BB0086E324 /* CardLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLabel.swift; sourceTree = "<group>"; };
+		02860E3D23CA64AA0086E324 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		02860E3F23CA97990086E324 /* Deletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deletable.swift; sourceTree = "<group>"; };
+		02D48B2F23D3B5DE00E6DA3A /* CustomAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertVC.swift; sourceTree = "<group>"; };
 		02E54B1322B33074000751CC /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		02E54B2722B35C94000751CC /* My_Business_Card.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = My_Business_Card.xcdatamodel; sourceTree = "<group>"; };
-		02E54B2922B41F55000751CC /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		02F0B5F722A87F6000ED64C3 /* QRDS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRDS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F0B5FA22A87F6000ED64C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		02F0B5FC22A87F6000ED64C3 /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		02F0B5FF22A87F6000ED64C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		02F0B60122A87F6100ED64C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02F0B60422A87F6100ED64C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02F0B60622A87F6100ED64C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		02F0B60C22A8DD0200ED64C3 /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
-		02F0B61022A9800E00ED64C3 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,29 +83,93 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		021648AD22C41DBE009AF692 /* CardsVCExtensions */ = {
+		02485E1523BD7D11002A5478 /* Custom Labels */ = {
 			isa = PBXGroup;
 			children = (
-				021648AB22C41D9E009AF692 /* CVC+CollectionviewDelegate.swift */,
-				021648A922C41D13009AF692 /* CVC+CustomDelegates.swift */,
-				021648A722C41C64009AF692 /* CVC+ScrollView.swift */,
+				02485E0F23BD7600002A5478 /* PrimaryLabel.swift */,
+				02485E1123BD774C002A5478 /* SecondaryLabel.swift */,
+				02860E1923C172BB0086E324 /* CardLabel.swift */,
 			);
-			path = CardsVCExtensions;
+			path = "Custom Labels";
 			sourceTree = "<group>";
 		};
-		021648B022C42232009AF692 /* AddCardVCExtensions */ = {
+		02485E1623BD7D29002A5478 /* Custom Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				021648AE22C42214009AF692 /* ACVC+TextfieldDelegates.swift */,
+				02485E0923BD02E7002A5478 /* PrimaryButton.swift */,
 			);
-			path = AddCardVCExtensions;
+			path = "Custom Buttons";
+			sourceTree = "<group>";
+		};
+		02485E1723BD7D47002A5478 /* Custom Fields */ = {
+			isa = PBXGroup;
+			children = (
+				02485E0B23BD61C5002A5478 /* PrimaryTextField.swift */,
+			);
+			path = "Custom Fields";
+			sourceTree = "<group>";
+		};
+		02485E1823BD7D6B002A5478 /* Custom Containers */ = {
+			isa = PBXGroup;
+			children = (
+				02860E1423C156DE0086E324 /* Cell Containers */,
+				02485E1923BD7D99002A5478 /* CircleContainerView.swift */,
+				02485E1E23BD9F5D002A5478 /* SquareContainerView.swift */,
+			);
+			path = "Custom Containers";
+			sourceTree = "<group>";
+		};
+		02485E1B23BD9E71002A5478 /* Add Card Flow */ = {
+			isa = PBXGroup;
+			children = (
+				02485E0523BBF1AA002A5478 /* CreateCardVC.swift */,
+				02485E1C23BD9EAC002A5478 /* AddInfoVC.swift */,
+				02782D4923BEE696006F44C3 /* SocialVC.swift */,
+			);
+			path = "Add Card Flow";
+			sourceTree = "<group>";
+		};
+		02782D5323C013F3006F44C3 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				02782D5423C01428006F44C3 /* ReceivedCard.swift */,
+				02860E3F23CA97990086E324 /* Deletable.swift */,
+				0205AA6223CBA436003CCA48 /* Shareable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		02782D5623C01467006F44C3 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				02F0B60322A87F6100ED64C3 /* LaunchScreen.storyboard */,
+				02F0B5FA22A87F6000ED64C3 /* AppDelegate.swift */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		02860E1423C156DE0086E324 /* Cell Containers */ = {
+			isa = PBXGroup;
+			children = (
+				02860E1523C156FF0086E324 /* TopCellContainer.swift */,
+				02860E1723C171380086E324 /* BottomCellContainer.swift */,
+			);
+			path = "Cell Containers";
+			sourceTree = "<group>";
+		};
+		02860E4123CA981B0086E324 /* CardsVC+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				02782D4B23BEF4FF006F44C3 /* CardsVC.swift */,
+				021648A722C41C64009AF692 /* CVC+ScrollView.swift */,
+			);
+			path = "CardsVC+Extensions";
 			sourceTree = "<group>";
 		};
 		02E54B1222B3304D000751CC /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				02E54B1322B33074000751CC /* PersistenceService.swift */,
-				02E54B2922B41F55000751CC /* Alert.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -101,14 +193,14 @@
 		02F0B5F922A87F6000ED64C3 /* My Business Card */ = {
 			isa = PBXGroup;
 			children = (
-				02F0B5FA22A87F6000ED64C3 /* AppDelegate.swift */,
 				02F0B61222AA136E00ED64C3 /* Model */,
 				02F0B61322AA137700ED64C3 /* Controllers */,
-				02F0B61422AA138700ED64C3 /* View */,
+				02F0B61422AA138700ED64C3 /* Views */,
+				02782D5323C013F3006F44C3 /* Protocols */,
 				02F0B60122A87F6100ED64C3 /* Assets.xcassets */,
 				02E54B1222B3304D000751CC /* Service */,
 				02F0B61722AA15AA00ED64C3 /* Helpers */,
-				02F0B60322A87F6100ED64C3 /* LaunchScreen.storyboard */,
+				02782D5623C01467006F44C3 /* Supporting */,
 				02F0B60622A87F6100ED64C3 /* Info.plist */,
 			);
 			path = "My Business Card";
@@ -125,27 +217,33 @@
 		02F0B61322AA137700ED64C3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				02F0B5FC22A87F6000ED64C3 /* CardsViewController.swift */,
-				02F0B61022A9800E00ED64C3 /* AddCardViewController.swift */,
-				021648AD22C41DBE009AF692 /* CardsVCExtensions */,
-				021648B022C42232009AF692 /* AddCardVCExtensions */,
+				02860E4123CA981B0086E324 /* CardsVC+Extensions */,
+				02485E1B23BD9E71002A5478 /* Add Card Flow */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		02F0B61422AA138700ED64C3 /* View */ = {
+		02F0B61422AA138700ED64C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				02F0B60C22A8DD0200ED64C3 /* CardCollectionViewCell.swift */,
+				02782D4F23BF0306006F44C3 /* CardCell.swift */,
+				02485E1823BD7D6B002A5478 /* Custom Containers */,
+				02485E1623BD7D29002A5478 /* Custom Buttons */,
+				02485E1723BD7D47002A5478 /* Custom Fields */,
+				02485E1523BD7D11002A5478 /* Custom Labels */,
+				02D48B2F23D3B5DE00E6DA3A /* CustomAlertVC.swift */,
 				02F0B5FE22A87F6000ED64C3 /* Main.storyboard */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		02F0B61722AA15AA00ED64C3 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				02E54B1022B16EC8000751CC /* String+Extension.swift */,
+				02860E3D23CA64AA0086E324 /* UIView+Extensions.swift */,
+				02782D4723BEDFF6006F44C3 /* ViewController+Extensions.swift */,
+				02485E1323BD7958002A5478 /* Constants.swift */,
+				02485E0D23BD66CE002A5478 /* QRCodeBuilder.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -221,18 +319,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02F0B5FD22A87F6000ED64C3 /* CardsViewController.swift in Sources */,
+				02485E0623BBF1AA002A5478 /* CreateCardVC.swift in Sources */,
+				02485E1423BD7958002A5478 /* Constants.swift in Sources */,
+				02485E0A23BD02E7002A5478 /* PrimaryButton.swift in Sources */,
+				02485E1D23BD9EAC002A5478 /* AddInfoVC.swift in Sources */,
+				02782D4823BEDFF6006F44C3 /* ViewController+Extensions.swift in Sources */,
+				02860E3E23CA64AA0086E324 /* UIView+Extensions.swift in Sources */,
+				02485E1223BD774C002A5478 /* SecondaryLabel.swift in Sources */,
+				02485E0E23BD66CE002A5478 /* QRCodeBuilder.swift in Sources */,
+				02860E1A23C172BB0086E324 /* CardLabel.swift in Sources */,
 				02E54B2822B35C94000751CC /* My_Business_Card.xcdatamodeld in Sources */,
+				02782D4C23BEF4FF006F44C3 /* CardsVC.swift in Sources */,
 				02E54B1422B33074000751CC /* PersistenceService.swift in Sources */,
-				02F0B60D22A8DD0200ED64C3 /* CardCollectionViewCell.swift in Sources */,
-				021648AF22C42214009AF692 /* ACVC+TextfieldDelegates.swift in Sources */,
+				02782D5023BF0306006F44C3 /* CardCell.swift in Sources */,
+				02860E4023CA97990086E324 /* Deletable.swift in Sources */,
+				0205AA6323CBA436003CCA48 /* Shareable.swift in Sources */,
+				02485E1A23BD7D99002A5478 /* CircleContainerView.swift in Sources */,
+				02860E1823C171380086E324 /* BottomCellContainer.swift in Sources */,
+				02485E0C23BD61C5002A5478 /* PrimaryTextField.swift in Sources */,
+				02782D4A23BEE696006F44C3 /* SocialVC.swift in Sources */,
+				02782D5523C01428006F44C3 /* ReceivedCard.swift in Sources */,
 				02F0B5FB22A87F6000ED64C3 /* AppDelegate.swift in Sources */,
-				021648AC22C41D9E009AF692 /* CVC+CollectionviewDelegate.swift in Sources */,
-				02E54B1122B16EC8000751CC /* String+Extension.swift in Sources */,
-				02E54B2A22B41F55000751CC /* Alert.swift in Sources */,
-				021648AA22C41D13009AF692 /* CVC+CustomDelegates.swift in Sources */,
+				02860E1623C156FF0086E324 /* TopCellContainer.swift in Sources */,
+				02D48B3023D3B5DE00E6DA3A /* CustomAlertVC.swift in Sources */,
+				02485E1023BD7600002A5478 /* PrimaryLabel.swift in Sources */,
 				021648A822C41C64009AF692 /* CVC+ScrollView.swift in Sources */,
-				02F0B61122A9800E00ED64C3 /* AddCardViewController.swift in Sources */,
+				02485E1F23BD9F5D002A5478 /* SquareContainerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +421,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -364,7 +476,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -379,13 +491,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F53KQCQHRC;
+				CURRENT_PROJECT_VERSION = 1.1;
+				DEVELOPMENT_TEAM = HVUN33Q65U;
 				INFOPLIST_FILE = "My Business Card/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.IrvingCodes.QRDS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -398,13 +512,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F53KQCQHRC;
+				CURRENT_PROJECT_VERSION = 1.1;
+				DEVELOPMENT_TEAM = HVUN33Q65U;
 				INFOPLIST_FILE = "My Business Card/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.IrvingCodes.QRDS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
