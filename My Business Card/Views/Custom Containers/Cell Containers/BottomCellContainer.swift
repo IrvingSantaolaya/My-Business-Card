@@ -17,7 +17,7 @@ class BottomCellContainer: UIView {
     var phoneLabel = CardLabel()
     private let circleView = CircleContainerView(size: 80)
     
-    // Computed properties
+    // MARK: Computed properties
     private let idImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: Constants.id)
@@ -107,7 +107,7 @@ class BottomCellContainer: UIView {
         setupButtons()
     }
     
-    // MARK: Configure UI
+    // MARK: Setup UI
     
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false

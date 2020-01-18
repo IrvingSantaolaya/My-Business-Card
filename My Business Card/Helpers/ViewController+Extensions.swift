@@ -22,4 +22,11 @@ extension UIViewController {
         }
         NotificationCenter.default.removeObserver(self)
     }
+    
+    func presentAlert() {
+        let alertVC = CustomAlertVC()
+        alertVC.modalPresentationStyle = .overFullScreen
+        alertVC.modalTransitionStyle = .crossDissolve
+        self.present(alertVC, animated: true)
+    }
 }

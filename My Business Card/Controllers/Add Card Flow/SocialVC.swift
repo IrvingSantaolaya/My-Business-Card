@@ -11,6 +11,7 @@ import UIKit
 class SocialVC: UIViewController {
     
     // MARK: Properties
+    
     var card: Card?
     var activeTextField : UITextField?
     var delegate: CardReceivable?
@@ -27,7 +28,8 @@ class SocialVC: UIViewController {
     private let fieldHeight: CGFloat = 32
     private let qrBuilder = QRCodeBuilder()
     
-    // Computed properties
+    // MARK: Computed properties
+    
     private let nextButton: PrimaryButton = {
         var color: UIColor = UIColor.purple
         if #available(iOS 13.0, *) {
@@ -76,6 +78,7 @@ class SocialVC: UIViewController {
     }()
     
     // MARK: Inits
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -92,6 +95,7 @@ class SocialVC: UIViewController {
     }
     
     //MARK: Actions
+    
     @objc func finishTapped() {
         if card != nil {
             card!.twitter = twitterField.text
@@ -108,6 +112,7 @@ class SocialVC: UIViewController {
     }
     
     // MARK: UI Methods
+    
     private func setupView() {
         title = Constants.enterSocialInfo
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -236,6 +241,7 @@ extension SocialVC: UITextFieldDelegate {
     }
     
     // MARK: Textfield support
+    
     private func setupObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)

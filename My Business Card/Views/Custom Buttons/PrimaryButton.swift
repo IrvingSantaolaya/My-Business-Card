@@ -10,6 +10,7 @@ import UIKit
 
 class PrimaryButton: UIButton {
 
+    // MARK: Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -27,6 +28,7 @@ class PrimaryButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Setup UI
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
         

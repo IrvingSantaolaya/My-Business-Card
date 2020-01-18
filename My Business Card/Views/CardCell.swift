@@ -11,6 +11,7 @@ import UIKit
 class CardCell: UICollectionViewCell {
     
     // MARK: Properties
+    
     private var topContainerView = TopCellContainer()
     private let bottomContainerView = BottomCellContainer()
     private var height: CGFloat?
@@ -26,6 +27,7 @@ class CardCell: UICollectionViewCell {
     }
 
     // MARK: - Inits
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         height = contentView.frame.height
@@ -39,6 +41,7 @@ class CardCell: UICollectionViewCell {
     }
     
     // MARK: Configure UI
+    
     private func configureCellUI() {
         // Content view border and rounded corners
         contentView.backgroundColor = UIColor(named: Constants.cardColor)
@@ -67,14 +70,9 @@ class CardCell: UICollectionViewCell {
     
     // Configure card
     private func setCard(card: Card?) {
-        guard let card = card else {
-            #warning("Alert")
-            return
-        }
-        guard let imageData = card.qrCodeImage else {
-            #warning("Alert")
-            return
-        }
+        guard let card = card else {  return }
+        guard let imageData = card.qrCodeImage else { return }
+        
         let image = UIImage(data: imageData)
         topContainerView.qrImageView.image = image
         topContainerView.titleLabel.text = card.cardName

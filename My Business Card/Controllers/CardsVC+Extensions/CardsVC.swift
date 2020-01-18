@@ -131,7 +131,7 @@ class CardsVC: UIViewController {
             self.collectionView?.reloadData()
         }
         catch {
-            #warning("alert")
+            presentAlert()
         }
     }
 }
@@ -193,14 +193,14 @@ extension CardsVC: UICollectionViewDelegate, UICollectionViewDataSource {
 extension CardsVC: Deletable, Shareable, CardReceivable {
     func shareTapped(index: IndexPath) {
         guard let qrCodeImage = cards[index.item].qrCodeImage else {
-            #warning("Alert")
+            presentAlert()
             return
         }
         // image to share
         let image = UIImage(data: qrCodeImage)
         // Check that image is not nil
         guard let checkedImage = image else {
-            #warning("Alert")
+            presentAlert()
             return
         }
         // Create and present activity sheet

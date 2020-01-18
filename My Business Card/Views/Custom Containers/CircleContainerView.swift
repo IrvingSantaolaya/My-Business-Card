@@ -10,6 +10,7 @@ import UIKit
 
 class CircleContainerView: UIView {
     
+    // MARK: Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -24,6 +25,7 @@ class CircleContainerView: UIView {
         setup()
     }
     
+    // MARK: Setup UI
     private func setup() {
        translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 13.0, *) {

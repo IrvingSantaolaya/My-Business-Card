@@ -9,16 +9,16 @@
 import UIKit
 
 class TopCellContainer: UIView {
-
+    
     var titleLabel = PrimaryLabel(text: Constants.defaultCardTitle)
     
     // MARK: Computed Properties
+    
     private let titleIcon: UIImageView = {
         let imageView = UIImageView()
         if #available(iOS 13.0, *) {
             imageView.image = UIImage(systemName: "person.crop.circle.fill")
             imageView.tintColor = UIColor.label
-        } else {
         }
         return imageView
     }()
@@ -43,6 +43,7 @@ class TopCellContainer: UIView {
     }()
     
     // MARK: Inits
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -55,6 +56,7 @@ class TopCellContainer: UIView {
         setupQrImage()
     }
     
+    // MARK: Setup UI
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .clear
@@ -76,7 +78,6 @@ class TopCellContainer: UIView {
     }
     
     private func setupQrImage() {
-        
         addSubview(qrImageView)
         qrImageView.dropShadow(color: .black)
         
@@ -87,16 +88,5 @@ class TopCellContainer: UIView {
             qrImageView.widthAnchor.constraint(equalTo: qrImageView.heightAnchor)
             
         ])
-//        containerView.addSubview(qrImageView)
-//
-//        NSLayoutConstraint.activate([
-//            qrImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
-//            qrImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
-//            qrImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
-//            qrImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
-//        ])
-        
-        
     }
-
 }

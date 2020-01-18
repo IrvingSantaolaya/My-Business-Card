@@ -10,6 +10,7 @@ import UIKit
 
 class PrimaryTextField: UITextField {
 
+    // MARK: Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -24,6 +25,7 @@ class PrimaryTextField: UITextField {
         setup()
     }
     
+    // MARK: Setup UI
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 10

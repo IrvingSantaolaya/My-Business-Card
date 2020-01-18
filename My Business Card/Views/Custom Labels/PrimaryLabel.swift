@@ -10,6 +10,7 @@ import UIKit
 
 class PrimaryLabel: UILabel {
 
+    // MARK: Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -24,6 +25,7 @@ class PrimaryLabel: UILabel {
         setup()
     }
     
+    // MARK: Setup UI
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
         font = UIFont.preferredFont(forTextStyle: .title1)

@@ -9,8 +9,9 @@
 import UIKit
 
 class CardLabel: UILabel {
-
-        override init(frame: CGRect) {
+    
+    // MARK: Inits
+    override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
@@ -25,6 +26,7 @@ class CardLabel: UILabel {
         setup()
     }
     
+    // MARK: Setup UI
     private func setup() {
         translatesAutoresizingMaskIntoConstraints = false
         font = UIFont.preferredFont(forTextStyle: .body)
@@ -36,5 +38,5 @@ class CardLabel: UILabel {
             textColor = .black
         }
     }
-
+    
 }

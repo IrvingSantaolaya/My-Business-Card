@@ -11,6 +11,7 @@ import UIKit
 class CreateCardVC: UIViewController {
     
     // MARK: Properties
+    
     var activeTextField : UITextField?
     var delegate: CardReceivable?
     var card = Card(context: PersistenceService.context)
@@ -35,6 +36,7 @@ class CreateCardVC: UIViewController {
     }()
     
     // MARK: Inits
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -51,6 +53,7 @@ class CreateCardVC: UIViewController {
     }
     
     //MARK: Actions
+    
     @objc func nextTapped() {
         let infoVC = AddInfoVC()
         card.cardName = textfield.text
@@ -60,6 +63,7 @@ class CreateCardVC: UIViewController {
     }
     
     // MARK: Configure UI
+    
     private func setupView() {
         title = Constants.createCard
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -156,6 +160,7 @@ extension CreateCardVC: UITextFieldDelegate {
     }
     
     // MARK: Textfield support
+    
     private func setupObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -168,6 +173,7 @@ extension CreateCardVC: UITextFieldDelegate {
         if let activeTextField = activeTextField {
             let bottomOfTextField = activeTextField.convert(activeTextField.bounds, to: self.view).maxY;
             let topOfKeyboard = view.frame.height - keyboardSize.height
+            
             // If the bottom of Textfield is below the top of keyboard, move up
             if bottomOfTextField > topOfKeyboard {
                 shouldMoveViewUp = true

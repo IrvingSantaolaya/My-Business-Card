@@ -48,6 +48,8 @@ class Constants {
     static let enterInfo = "Now, enter basic contact info that you want to share."
     static let socialInfo = "If you'd like, you can enter some social media info too."
     static let defaultCardTitle = "Card Title"
+    static let alertTitle = "Something went wrong😓"
+    static let alertBody = "Please try again. If the problem continues, relaunch the app."
     
     // MARK: Colors
     static let containerColor = "ContainerColor"

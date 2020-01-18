@@ -11,6 +11,7 @@ import UIKit
 class AddInfoVC: UIViewController {
     
     // MARK: Properties
+    
     var card: Card?
     var delegate: CardReceivable?
     var activeTextField : UITextField?
@@ -26,7 +27,8 @@ class AddInfoVC: UIViewController {
     private let padding: CGFloat = 20
     private let fieldHeight: CGFloat = 32
     
-    // Computed properties
+    // MARK: Computed properties
+    
     private let nextButton: PrimaryButton = {
         var color: UIColor = UIColor.purple
         if #available(iOS 13.0, *) {
@@ -46,6 +48,7 @@ class AddInfoVC: UIViewController {
     }()
     
     // MARK: Inits
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupObservers()
@@ -61,6 +64,7 @@ class AddInfoVC: UIViewController {
     }
     
     //MARK: Actions
+    
     @objc func nextTapped() {
         card?.firstName = firstNameField.text
         card?.lastName = lastNameField.text
@@ -178,6 +182,7 @@ extension AddInfoVC: UITextFieldDelegate {
     }
     
     // MARK: Textfield support
+    
     private func setupObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -190,6 +195,7 @@ extension AddInfoVC: UITextFieldDelegate {
         if let activeTextField = activeTextField {
             let bottomOfTextField = activeTextField.convert(activeTextField.bounds, to: self.view).maxY;
             let topOfKeyboard = view.frame.height - keyboardSize.height
+            
             // If the bottom of Textfield is below the top of keyboard, move up
             if bottomOfTextField > topOfKeyboard {
                 shouldMoveViewUp = true
@@ -214,6 +220,7 @@ extension AddInfoVC: UITextFieldDelegate {
 }
 
 // MARK: Receivable Delegate method
+
 extension AddInfoVC: CardReceivable {
     
     func gotCard(card: Card) {

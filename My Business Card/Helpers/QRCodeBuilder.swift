@@ -13,9 +13,7 @@ class QRCodeBuilder {
     
     // Build contact using "" as default values
     func createContact(card: Card) -> CNMutableContact {
-        
         let contact = CNMutableContact()
-        
         // Set contact first and last name
         contact.givenName = card.firstName ?? ""
         contact.familyName = card.lastName ?? ""
@@ -27,7 +25,6 @@ class QRCodeBuilder {
         
         // Set social
         contact.socialProfiles = [CNLabeledValue<CNSocialProfile>]()
-        
         if card.twitter != nil && card.twitter != "" {
             let twitterProfile = CNLabeledValue(label: "Twitter", value: CNSocialProfile(urlString: nil, username: card.twitter, userIdentifier: nil, service: CNSocialProfileServiceTwitter))
             contact.socialProfiles.append(twitterProfile)
@@ -41,7 +38,6 @@ class QRCodeBuilder {
         contact.phoneNumbers = [CNLabeledValue(
             label:CNLabelPhoneNumberiPhone,
             value:CNPhoneNumber(stringValue: card.phoneNumber ?? ""))]
-        
         return contact
     }
     
@@ -55,20 +51,12 @@ class QRCodeBuilder {
         }
         // Convert contact data into a string
         let dataString = String(data: contactData!, encoding: String.Encoding.ascii)
-        
-        // Get NSdata from the string
         let data = dataString?.data(using: String.Encoding.ascii)
-        
-        // Get a QR CIFilter
         guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else { return nil }
-        
-        // Input the data
         qrFilter.setValue(data, forKey: "inputMessage")
         
         // Get the output image
         guard let qrImage = qrFilter.outputImage else { return nil }
-        
-        // Scale the image
         let transform = CGAffineTransform(scaleX: 10, y: 10)
         let scaledQrImage = qrImage.transformed(by: transform)
         
@@ -76,7 +64,6 @@ class QRCodeBuilder {
         let context = CIContext()
         guard let cgImage = context.createCGImage(scaledQrImage, from: scaledQrImage.extent) else { return nil}
         let processedImage = UIImage(cgImage: cgImage)
-        
         return processedImage
     }
 }
