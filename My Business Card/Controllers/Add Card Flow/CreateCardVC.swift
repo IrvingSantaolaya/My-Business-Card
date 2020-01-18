@@ -11,6 +11,8 @@ import UIKit
 class CreateCardVC: UIViewController {
     
     // MARK: Properties
+    var activeTextField : UITextField?
+    var delegate: CardReceivable?
     var card = Card(context: PersistenceService.context)
     private let logoImageView = UIImageView()
     private let primaryLabel = PrimaryLabel(text: Constants.createCard)
@@ -19,14 +21,17 @@ class CreateCardVC: UIViewController {
     private let textfield = PrimaryTextField(placeholder: Constants.cardNameField)
     private let padding: CGFloat = 20
     
-    var delegate: CardReceivable?
+    
     // Computed properties
     private let nextButton: PrimaryButton = {
         var color: UIColor = UIColor.purple
         if #available(iOS 13.0, *) {
             color = UIColor.systemIndigo
         }
-        return PrimaryButton(color: color, title: Constants.next)
+        let button = PrimaryButton(color: color, title: Constants.next)
+        button.isEnabled = false
+        button.alpha = 0.5
+        return button
     }()
     
     // MARK: Inits
@@ -37,11 +42,12 @@ class CreateCardVC: UIViewController {
         setupLabels()
         setupField()
         setupButton()
+        setupObservers()
         addDismissKeyboardTapGesture()
     }
     
     deinit {
-        removeAllGestureRecognizers()
+        removeObserversAndRecognizers()
     }
     
     //MARK: Actions
@@ -53,7 +59,7 @@ class CreateCardVC: UIViewController {
         navigationController?.pushViewController(infoVC, animated: true)
     }
     
-    // MARK: UI Methods
+    // MARK: Configure UI
     private func setupView() {
         title = Constants.createCard
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -65,7 +71,6 @@ class CreateCardVC: UIViewController {
     }
     
     private func setupImageView() {
-        
         view.addSubview(circleView)
         NSLayoutConstraint.activate([
             circleView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -96,6 +101,7 @@ class CreateCardVC: UIViewController {
     }
     
     private func setupField() {
+        textfield.delegate = self
         view.addSubview(textfield)
         NSLayoutConstraint.activate([
             textfield.topAnchor.constraint(equalTo: secondaryLabel.bottomAnchor, constant: 35),
@@ -115,6 +121,68 @@ class CreateCardVC: UIViewController {
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             nextButton.heightAnchor.constraint(equalToConstant: 35)
         ])
+    }
+}
+
+// MARK: Delegate methods
+
+extension CreateCardVC: UITextFieldDelegate {
+    
+    // Limit text to 35 characters
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let textFieldText = textField.text else { return false }
+        guard let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
+        
+        let substringToReplace = textFieldText[rangeOfTextToReplace]
+        let count = textFieldText.count - substringToReplace.count + string.count
+        if count > 0 {
+            nextButton.isEnabled = true
+            nextButton.alpha = 1
+        }
+        else {
+            nextButton.isEnabled = false
+            nextButton.alpha = 0.5
+        }
+        return count <= 25
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.activeTextField = textField
+    }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.activeTextField = nil
+    }
+    
+    // MARK: Textfield support
+    private func setupObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        var shouldMoveViewUp = false
+        var amount: CGFloat = 0
+        if let activeTextField = activeTextField {
+            let bottomOfTextField = activeTextField.convert(activeTextField.bounds, to: self.view).maxY;
+            let topOfKeyboard = view.frame.height - keyboardSize.height
+            // If the bottom of Textfield is below the top of keyboard, move up
+            if bottomOfTextField > topOfKeyboard {
+                shouldMoveViewUp = true
+                amount = bottomOfTextField - (topOfKeyboard - 12)
+            }
+        }
+        if(shouldMoveViewUp) {
+            title = ""
+            view.frame.origin.y = 0 - amount
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.view.frame.origin.y = 0
+        title = Constants.createCard
     }
 }
 

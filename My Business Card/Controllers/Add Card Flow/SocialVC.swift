@@ -12,6 +12,8 @@ class SocialVC: UIViewController {
     
     // MARK: Properties
     var card: Card?
+    var activeTextField : UITextField?
+    var delegate: CardReceivable?
     private let logoImageView = UIImageView()
     private let secondaryLabel = SecondaryLabel(text: Constants.socialInfo)
     private let circleView = CircleContainerView(size: 120)
@@ -24,8 +26,6 @@ class SocialVC: UIViewController {
     private let padding: CGFloat = 20
     private let fieldHeight: CGFloat = 32
     private let qrBuilder = QRCodeBuilder()
-    
-    var delegate: CardReceivable?
     
     // Computed properties
     private let nextButton: PrimaryButton = {
@@ -83,11 +83,12 @@ class SocialVC: UIViewController {
         setupLabel()
         setupFields()
         setupButton()
+        setupObservers()
         addDismissKeyboardTapGesture()
     }
     
     deinit {
-        removeAllGestureRecognizers()
+        removeObserversAndRecognizers()
     }
     
     //MARK: Actions
@@ -118,7 +119,6 @@ class SocialVC: UIViewController {
     }
     
     private func setupImageView() {
-        
         view.addSubview(circleView)
         NSLayoutConstraint.activate([
             circleView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -149,6 +149,17 @@ class SocialVC: UIViewController {
     }
     
     private func setupFields() {
+        let fields = [twitterField, linkedinField, emailField]
+        
+        for field in fields {
+            if field == twitterField {
+                field.keyboardType = .twitter
+            }
+            else {
+                field.keyboardType = .emailAddress
+            }
+            field.delegate = self
+        }
         view.addSubview(stackView)
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: secondaryLabel.bottomAnchor, constant: padding),
@@ -201,7 +212,58 @@ class SocialVC: UIViewController {
         ])
         nextButton.addTarget(self, action: #selector(finishTapped), for: .touchUpInside)
     }
+}
+
+extension SocialVC: UITextFieldDelegate {
     
-    // MARK: Helpers
+    // Limit text to 35 characters
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let textFieldText = textField.text else { return false }
+        guard let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
+        
+        let substringToReplace = textFieldText[rangeOfTextToReplace]
+        let count = textFieldText.count - substringToReplace.count + string.count
+        return count <= 45
+    }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.activeTextField = textField
+    }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.activeTextField = nil
+    }
+    
+    // MARK: Textfield support
+    private func setupObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        var shouldMoveViewUp = false
+        var amount: CGFloat = 0
+        if let activeTextField = activeTextField {
+            let bottomOfTextField = activeTextField.convert(activeTextField.bounds, to: self.view).maxY;
+            let topOfKeyboard = view.frame.height - keyboardSize.height
+            // If the bottom of Textfield is below the top of keyboard, move up
+            if bottomOfTextField > topOfKeyboard {
+                shouldMoveViewUp = true
+                amount = bottomOfTextField - (topOfKeyboard - 12)
+            }
+        }
+        if(shouldMoveViewUp) {
+            view.frame.origin.y = 0 - amount
+            if activeTextField == linkedinField && view.bounds.height < 630 {
+                title = ""
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.view.frame.origin.y = 0
+        title = Constants.enterSocialInfo
+    }
 }

@@ -26,12 +26,12 @@ class Constants {
     static let cardNameField = "Card name"
     static let firstNameField = "First name"
     static let lastNameField = "Last name"
-    static let companyField = "Company name (optional)"
-    static let jobTitleField = "Job title (optional)"
+    static let companyField = "Company name"
+    static let jobTitleField = "Job title"
     static let phoneNumberField = "Phone number"
-    static let twitterField = "Twitter handdle (optional)"
-    static let linkedinField = "Linkedin handdle (optional)"
-    static let emailField = "E-mail (optional)"
+    static let twitterField = "Twitter username"
+    static let linkedinField = "Linkedin url"
+    static let emailField = "E-mail"
     
     // MARK: Images
     static let social = "social"

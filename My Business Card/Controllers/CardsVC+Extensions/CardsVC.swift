@@ -87,8 +87,6 @@ class CardsVC: UIViewController {
             pageControl.currentPageIndicatorTintColor = .purple
         }
         
-        
-        
         view.addSubview(pageControl)
         NSLayoutConstraint.activate([
             pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
@@ -96,8 +94,8 @@ class CardsVC: UIViewController {
             pageControl.heightAnchor.constraint(equalToConstant: 12),
             pageControl.widthAnchor.constraint(equalToConstant: 50)
         ])
-        
     }
+    
     // MARK: Actions
     
     @objc func addTapped() {
@@ -133,7 +131,6 @@ class CardsVC: UIViewController {
             self.collectionView?.reloadData()
         }
         catch {
-            // Show alert
             #warning("alert")
         }
     }

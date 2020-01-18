@@ -16,9 +16,10 @@ extension UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    func removeAllGestureRecognizers() {
+    func removeObserversAndRecognizers() {
         for recognizer in self.view.gestureRecognizers ?? [] {
             view.removeGestureRecognizer(recognizer)
         }
+        NotificationCenter.default.removeObserver(self)
     }
 }

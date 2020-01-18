@@ -9,9 +9,11 @@
 import UIKit
 
 class AddInfoVC: UIViewController {
-
+    
     // MARK: Properties
     var card: Card?
+    var delegate: CardReceivable?
+    var activeTextField : UITextField?
     private let logoImageView = UIImageView()
     private let primaryLabel = PrimaryLabel(text: Constants.createCard)
     private let secondaryLabel = SecondaryLabel(text: Constants.enterInfo)
@@ -23,8 +25,6 @@ class AddInfoVC: UIViewController {
     private let phoneField = PrimaryTextField(placeholder: Constants.phoneNumberField)
     private let padding: CGFloat = 20
     private let fieldHeight: CGFloat = 32
-    
-    var delegate: CardReceivable?
     
     // Computed properties
     private let nextButton: PrimaryButton = {
@@ -48,16 +48,17 @@ class AddInfoVC: UIViewController {
     // MARK: Inits
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupObservers()
         setupView()
         setupImageView()
         setupLabel()
         setupFields()
         addDismissKeyboardTapGesture()
-        }
-        
-        deinit {
-            removeAllGestureRecognizers()
-        }
+    }
+    
+    deinit {
+        removeObserversAndRecognizers()
+    }
     
     //MARK: Actions
     @objc func nextTapped() {
@@ -75,6 +76,7 @@ class AddInfoVC: UIViewController {
     }
     
     // MARK: UI Methods
+    
     private func setupView() {
         title = Constants.enterContactInfo
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -125,11 +127,13 @@ class AddInfoVC: UIViewController {
             stackView.heightAnchor.constraint(equalToConstant: 250)
         ])
         
-        stackView.addArrangedSubview(firstNameField)
-        stackView.addArrangedSubview(lastNameField)
-        stackView.addArrangedSubview(phoneField)
-        stackView.addArrangedSubview(companyNameField)
-        stackView.addArrangedSubview(jobTitleField)
+        let fields = [firstNameField, lastNameField, phoneField, companyNameField, jobTitleField]
+        phoneField.keyboardType = .phonePad
+        
+        for field in fields {
+            stackView.addArrangedSubview(field)
+            field.delegate = self
+        }
         
         NSLayoutConstraint.activate([
             firstNameField.heightAnchor.constraint(equalToConstant: fieldHeight),
@@ -150,6 +154,66 @@ class AddInfoVC: UIViewController {
     }
 }
 
+// MARK: Textfield Delegate methods and support
+
+extension AddInfoVC: UITextFieldDelegate {
+    
+    // Limit text to 20 characters
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let textFieldText = textField.text else { return false }
+        guard let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
+        
+        let substringToReplace = textFieldText[rangeOfTextToReplace]
+        let count = textFieldText.count - substringToReplace.count + string.count
+        return count <= 20
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.activeTextField = textField
+    }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.activeTextField = nil
+    }
+    
+    // MARK: Textfield support
+    private func setupObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        var shouldMoveViewUp = false
+        var amount: CGFloat = 0
+        if let activeTextField = activeTextField {
+            let bottomOfTextField = activeTextField.convert(activeTextField.bounds, to: self.view).maxY;
+            let topOfKeyboard = view.frame.height - keyboardSize.height
+            // If the bottom of Textfield is below the top of keyboard, move up
+            if bottomOfTextField > topOfKeyboard {
+                shouldMoveViewUp = true
+                amount = bottomOfTextField - (topOfKeyboard - 12)
+            }
+        }
+        if(shouldMoveViewUp) {
+            if activeTextField == companyNameField || activeTextField == jobTitleField {
+                title = ""
+            }
+            else if activeTextField == phoneField && view.bounds.height < 630 {
+                title = ""
+            }
+            view.frame.origin.y = 0 - amount
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.view.frame.origin.y = 0
+        title = Constants.enterContactInfo
+    }
+}
+
+// MARK: Receivable Delegate method
 extension AddInfoVC: CardReceivable {
     
     func gotCard(card: Card) {
